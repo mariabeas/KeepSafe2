@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Keep Safe</string>
+
+    <!-- Strings de la pantalla principal -->
+    <string name="btnInicio">Iniciar sesión</string>
+    <string name="edtUser">Email</string>
+    <string name="edtPassword">Contraseña</string>
+    <string name="box">Recordar datos</string>
+    <string name="btnRegistro">Registrarse</string>
+    <string name="btnRecuperar">Recuperar contraseña</string>
+
+    <!-- Strings del menú -->
+    <string name="btnDatos">Datos personales</string>
+    <string name="btnAgenda">Agenda emergencias</string>
+    <string name="btnSMS">Enviar mensaje</string>
+    <string name="btnUbicacion">Ubicación</string>
+    <string name="btnInfo">Información</string>
+
+    <!-- Strings de la pantalla info -->
+    <string name="txtInfo">App de ayuda para gente con discapacidad auditiva</string>
+
+    <!-- Strings de la pantalla registro -->
+    <string name="btnAceptar">Aceptar</string>
+    <string name="edtConfiPass">Contraseña</string>
+
+    <!-- Strings de la pantalla datos -->
+    <string name="edtNombre">Nombre</string>
+    <string name="edtApellido">Apellido</string>
+    <string name="edtFecha">Fecha de nacimiento</string>
+    <string name="edtSexo">Sexo</string>
+    <string name="edtSangre">Grupo sanguíneo</string>
+    <string name="edtNum">Num.Seguridad social</string>
+    <string name="btnCambiar">Cambiar contraseña</string>
+    <string name="btnFoto">Cambiar foto</string>
+
+    <!-- Strings de la pantalla cambiar contraseña -->
+    <string name="edtPassActual">Contraseña actual</string>
+    <string name="edtNuevaPass">Nueva contraseña</string>
+    <string name="edtConfirmarPass">Confirmar contraseña</string>
+
+    <!-- Strings de la pantalla recuperar contraseña-->
+    <string name="edtRecuperar">Introduzca el email</string>
+    <string name="btnEnviarEmail">Enviar</string>
+
+    <!-- Strings de la pantalla información -->
+    <string name="btnFB">Compartir en Facebook</string>
+
+    <!--Facebook id -->
+    <string name="facebook_app_id">1654873761420623</string>
+
+
+
+</resources>

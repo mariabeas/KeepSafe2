@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:foregroundGravity="right"
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        android:layout_gravity="right" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnDatos"
+        android:id="@+id/btnDatos"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnAgenda"
+        android:id="@+id/btnAgenda"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnSMS"
+        android:id="@+id/btnSMS"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnUbicacion"
+        android:id="@+id/btnUbicacion"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnInfo"
+        android:id="@+id/btnInfo"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp" />
+</LinearLayout>

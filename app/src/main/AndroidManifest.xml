@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.mariabeas.keepsafe">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Meta datos para usar la api de FB y la de Google-->
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+
+         <meta-data
+             android:name="com.google.android.gms.version"
+             android:value="@integer/google_play_services_version"/>
+
+         <meta-data
+
+             android:name="com.google.android.maps.v2.API_KEY"
+             android:value="AIzaSyBdhADGONI-E-YD8PKQMl3ruFIKWbdk0Fg"/>
+
+
+        <!-- Pantalla principal -->
+        <activity android:name=".MainActivity">
+            <!-- <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>-->
+        </activity>
+
+        <!-- Pantalla del menu-->
+        <activity android:name="com.app.mariabeas.keepsafe.MenuActivity"
+            android:label="@string/app_name">
+
+        </activity>
+
+        <!-- Pantalla del registro-->
+        <activity android:name=".RegistroActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <!-- Pantalla de los datos-->
+        <activity android:name=".DatosActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <!-- Pantalla del splash-->
+        <activity android:name=".SplashActivity">
+            <!--android:label="@string/app_name"> -->
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Pantalla de cambiar contraseña-->
+        <activity android:name=".CambiarPassActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <!-- Pantalla de ubicación-->
+        <activity android:name=".UbicacionActivity"
+            android:label="@string/app_name">
+        </activity>
+        <!-- Pantalla de información-->
+        <activity android:name=".InformacionActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <!-- Facebook activity para poder usar el login o lo de compartir de facebook-->
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider1654873761420623"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
+
+
+    </application>
+
+    <!--Permisos para google play services-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--Encontrar ubicacion-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--Para escribir en la cache en la memoria externa del movil-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+
+
+
+</manifest>
+

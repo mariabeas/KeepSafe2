@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/candado"
+        android:src="@drawable/avatar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtUser"
+        android:ems="10"
+        android:id="@+id/edtUser"
+        android:layout_above="@+id/edtNombre"
+        android:layout_alignLeft="@+id/edtNombre"
+        android:layout_alignStart="@+id/edtNombre" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtNombre"
+        android:layout_above="@+id/edtApellido"
+        android:layout_alignLeft="@+id/edtApellido"
+        android:layout_alignStart="@+id/edtApellido"
+        android:hint="Nombre" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtApellido"
+        android:ems="10"
+        android:id="@+id/edtApellido"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/edtFecha"
+        android:hint="@string/edtFecha"
+        android:layout_below="@+id/edtApellido"
+        android:layout_alignLeft="@+id/edtApellido"
+        android:layout_alignStart="@+id/edtApellido" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtSexo"
+        android:ems="10"
+        android:id="@+id/edtSexo"
+        android:layout_below="@+id/edtFecha"
+        android:layout_alignLeft="@+id/edtFecha"
+        android:layout_alignStart="@+id/edtFecha" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtSangre"
+        android:ems="10"
+        android:id="@+id/edtSangre"
+        android:layout_below="@+id/edtSexo"
+        android:layout_alignLeft="@+id/edtSexo"
+        android:layout_alignStart="@+id/edtSexo" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edtNum"
+        android:hint="@string/edtNum"
+        android:layout_below="@+id/edtSangre"
+        android:layout_alignLeft="@+id/edtSangre"
+        android:layout_alignStart="@+id/edtSangre" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/btnCambiar"
+        android:id="@+id/btnCambiar"
+        android:layout_below="@+id/edtNum"
+        android:layout_toLeftOf="@+id/logo"
+        android:layout_toStartOf="@+id/logo" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/btnFoto"
+        android:id="@+id/btnFoto"
+        android:layout_below="@+id/candado"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
