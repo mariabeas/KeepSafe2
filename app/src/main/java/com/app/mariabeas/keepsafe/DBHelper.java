@@ -17,6 +17,9 @@ public class DBHelper extends SQLiteOpenHelper {
     //LLAMAR CUANDO LA BD NO EXISTA EN DISCO PARA CREARLA
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(LoginDataBaseAdapter.DATABASE_CREATE);
+        db.execSQL(LoginDataBaseAdapter.AGENDA_CREATE);
+        db.execSQL(LoginDataBaseAdapter.MENSAJES_CREATE);
+        db.execSQL(LoginDataBaseAdapter.UBICACION_CREATE);
 
     }
 

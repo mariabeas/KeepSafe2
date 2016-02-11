@@ -3,6 +3,7 @@ package com.app.mariabeas.keepsafe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,14 +24,22 @@ public class DatosActivity extends AppCompatActivity {
     EditText edtSangre;
     EditText edtNum;
 
+    LoginDataBaseAdapter loginDBAdapter;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.datos);
 
+        //Crear una instancia de SQLiteDataBase
+        loginDBAdapter = new LoginDataBaseAdapter(this);
+        loginDBAdapter = loginDBAdapter.open();
+
+
         //ELEMENTOS DE LA INTERFAZ
         Button btnCambiar=(Button)findViewById(R.id.btnCambiar);
         Button btnFoto=(Button)findViewById(R.id.btnFoto);
+        Button btnGuardar=(Button)findViewById(R.id.btnGuardar);
         logo=(ImageView)findViewById(R.id.logo);
         avatar=(ImageView)findViewById(R.id.candado);
         edtUser=(EditText)findViewById(R.id.edtUser);
@@ -43,6 +52,7 @@ public class DatosActivity extends AppCompatActivity {
 
         MiListener listener=new MiListener();
         btnCambiar.setOnClickListener(listener);
+        btnGuardar.setOnClickListener(listener);
     }
     private class MiListener implements View.OnClickListener{
 
@@ -55,12 +65,22 @@ public class DatosActivity extends AppCompatActivity {
             String sexo=((EditText)findViewById(R.id.edtSexo)).getText().toString();
             String sangre=((EditText)findViewById(R.id.edtSangre)).getText().toString();
             String num=((EditText)findViewById(R.id.edtNum)).getText().toString();
+            String foto=((Button)findViewById(R.id.btnFoto)).getText().toString();
 
-            //elementos vacios
-            if (nombre.equals(null) || usuario.equals(null) || apellido.equals(null) ||
-                    fecha.equals(null) || sexo.equals(null) || sangre.equals(null) || num.equals(null)) {
-                Toast.makeText(getApplicationContext(), "Completa los datos", Toast.LENGTH_SHORT).show();
-            }else{
+            if(v.getId()==R.id.btnGuardar){
+                //comprobar que los campos no estan vacios
+                if (nombre.equals(null) || usuario.equals(null) || apellido.equals(null) ||
+                        fecha.equals(null) || sexo.equals(null) || sangre.equals(null) || num.equals(null)) {
+                    Toast.makeText(getApplicationContext(), "Completa los datos", Toast.LENGTH_SHORT).show();
+                    return;
+
+            } else{
+                    LoginDataBaseAdapter.updateEntry(usuario,nombre,apellido,fecha,sexo,sangre,num);
+                    Toast.makeText(getApplicationContext(), "Datos modificados", Toast.LENGTH_SHORT).show();
+                    //GUARDAR DATOS IGUAL QUE AL HACER EL REGISTRO FIJARME EN EL ACTIVITY DE REGISTRO
+                    Intent intentGuardar=new Intent (DatosActivity.this,MenuActivity.class);
+                    startActivity(intentGuardar);
+                }
                 if(v.getId()==R.id.btnCambiar) {
                     //PARA PASAR DE UNA PANTALLA A OTRA
                     Intent intentactivity = new Intent(DatosActivity.this, CambiarPassActivity.class);
@@ -68,5 +88,12 @@ public class DatosActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //CERRAR LA DB
+        loginDBAdapter.close();
     }
 }

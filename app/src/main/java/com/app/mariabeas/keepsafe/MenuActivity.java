@@ -26,11 +26,14 @@ public class MenuActivity extends AppCompatActivity {
         Button btnSMS=(Button)findViewById(R.id.btnSMS);
         Button btnUbicacion=(Button)findViewById(R.id.btnUbicacion);
         Button btnInfo=(Button)findViewById(R.id.btnInfo);
+        Button btnCerrar=(Button)findViewById(R.id.btnCerrar);
 
         MiListener listener=new MiListener();
         btnDatos.setOnClickListener(listener);
         btnUbicacion.setOnClickListener(listener);
         btnInfo.setOnClickListener(listener);
+        btnCerrar.setOnClickListener(listener);
+        btnAgenda.setOnClickListener(listener);
     }
     private class MiListener implements View.OnClickListener{
 
@@ -46,6 +49,12 @@ public class MenuActivity extends AppCompatActivity {
             }else if(v.getId()==R.id.btnInfo){
                 Intent intentInfo=new Intent(MenuActivity.this,InformacionActivity.class);
                 startActivity(intentInfo);
+            }else if(v.getId()==R.id.btnCerrar){
+                Intent intentCerrar=new Intent(MenuActivity.this,MainActivity.class);
+                startActivity(intentCerrar);
+            }else if(v.getId()==R.id.btnAgenda){
+                Intent intentAgenda=new Intent(MenuActivity.this,AgendaActivity.class);
+                startActivity(intentAgenda);
             }
 
 

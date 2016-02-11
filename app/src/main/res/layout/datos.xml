@@ -103,9 +103,12 @@
         android:layout_height="wrap_content"
         android:hint="@string/btnCambiar"
         android:id="@+id/btnCambiar"
+        android:text="@string/btnCambiar"
         android:layout_below="@+id/edtNum"
-        android:layout_toLeftOf="@+id/logo"
-        android:layout_toStartOf="@+id/logo" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -113,5 +116,16 @@
         android:hint="@string/btnFoto"
         android:id="@+id/btnFoto"
         android:layout_below="@+id/candado"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnFoto" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnGuardar"
+        android:id="@+id/btnGuardar"
+        android:layout_below="@+id/edtNum"
+        android:layout_toRightOf="@+id/candado"
+        android:layout_toEndOf="@+id/candado" />
 </RelativeLayout>

@@ -15,6 +15,7 @@
     <string name="btnSMS">Enviar mensaje</string>
     <string name="btnUbicacion">Ubicación</string>
     <string name="btnInfo">Información</string>
+    <string name="btnCerrar">Cerrar sesión</string>
 
     <!-- Strings de la pantalla info -->
     <string name="txtInfo">App de ayuda para gente con discapacidad auditiva</string>
@@ -32,6 +33,7 @@
     <string name="edtNum">Num.Seguridad social</string>
     <string name="btnCambiar">Cambiar contraseña</string>
     <string name="btnFoto">Cambiar foto</string>
+    <string name="btnGuardar">Guardar datos</string>
 
     <!-- Strings de la pantalla cambiar contraseña -->
     <string name="edtPassActual">Contraseña actual</string>
@@ -47,7 +49,7 @@
 
     <!--Facebook id -->
     <string name="facebook_app_id">1654873761420623</string>
-
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
