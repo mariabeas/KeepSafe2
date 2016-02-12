@@ -3,7 +3,6 @@ package com.app.mariabeas.keepsafe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +42,7 @@ public class DatosActivity extends AppCompatActivity {
         logo=(ImageView)findViewById(R.id.logo);
         avatar=(ImageView)findViewById(R.id.candado);
         edtUser=(EditText)findViewById(R.id.edtUser);
-        edtNombre=(EditText)findViewById(R.id.edtNombre);
+        edtNombre=(EditText)findViewById(R.id.edtNombreAgenda);
         edtApellido=(EditText)findViewById(R.id.edtApellido);
         edtFecha=(EditText)findViewById(R.id.edtFecha);
         edtSexo=(EditText)findViewById(R.id.edtSexo);
@@ -59,7 +58,7 @@ public class DatosActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             String usuario=((EditText)findViewById(R.id.edtUser)).getText().toString();
-            String nombre=((EditText)findViewById(R.id.edtNombre)).getText().toString();
+            String nombre=((EditText)findViewById(R.id.edtNombreAgenda)).getText().toString();
             String apellido=((EditText)findViewById(R.id.edtApellido)).getText().toString();
             String fecha=((EditText)findViewById(R.id.edtFecha)).getText().toString();
             String sexo=((EditText)findViewById(R.id.edtSexo)).getText().toString();

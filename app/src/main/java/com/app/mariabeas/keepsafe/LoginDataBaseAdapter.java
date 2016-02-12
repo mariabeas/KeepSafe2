@@ -150,7 +150,7 @@ public class LoginDataBaseAdapter {
 
     //METODO  PARA BORRAR ENTRADAS DE LA DB
     public int deleteEntry(String idUsuario){
-        String where=usuariosDBInfo.IDUSUARIO_COLUMN+"=?";
+        String where=usuariosDBInfo.EMAIL_COLUMN+"=?";
         int numEntryDelete= db.delete(usuariosDBInfo.TABLE_NAME, where, new String[]{idUsuario}) ;
         return numEntryDelete;
     }

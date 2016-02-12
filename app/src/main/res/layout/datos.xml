@@ -28,16 +28,16 @@
         android:hint="@string/edtUser"
         android:ems="10"
         android:id="@+id/edtUser"
-        android:layout_above="@+id/edtNombre"
-        android:layout_alignLeft="@+id/edtNombre"
-        android:layout_alignStart="@+id/edtNombre" />
+        android:layout_above="@+id/edtNombreAgenda"
+        android:layout_alignLeft="@+id/edtNombreAgenda"
+        android:layout_alignStart="@+id/edtNombreAgenda" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/edtNombre"
+        android:id="@+id/edtNombreAgenda"
         android:layout_above="@+id/edtApellido"
         android:layout_alignLeft="@+id/edtApellido"
         android:layout_alignStart="@+id/edtApellido"

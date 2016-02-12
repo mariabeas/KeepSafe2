@@ -10,6 +10,10 @@
     <!-- Para escribir en la cache en la memoria externa del movil -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -95,6 +99,10 @@
         <activity
             android:name=".InformacionActivity"
             android:label="@string/app_name"></activity>
+
+        <!-- Pantalla de la agenda -->
+        <activity android:name=".AgendaActivity"
+            android:label="@string/app_name"/>
 
         <!-- Facebook activity para poder usar el login o lo de compartir de facebook -->
 
