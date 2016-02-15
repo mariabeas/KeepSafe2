@@ -1,5 +1,7 @@
 package com.app.mariabeas.keepsafe;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -37,6 +39,8 @@ public class MenuActivity extends AppCompatActivity {
         btnAgenda.setOnClickListener(listener);
         btnSMS.setOnClickListener(listener);
     }
+
+
     private class MiListener implements View.OnClickListener{
 
         @Override
@@ -58,18 +62,13 @@ public class MenuActivity extends AppCompatActivity {
                 Intent intentAgenda=new Intent(MenuActivity.this,AgendaActivity.class);
                 startActivity(intentAgenda);
             }else if(v.getId()==R.id.btnSMS){
-                sendSMS("10058", "PROBANDO!");
-                Intent intentSMS=new Intent(MenuActivity.this,MenuActivity.class);
+                Intent intentSMS=new Intent(MenuActivity.this,EnviarSMSActivity.class);
                 startActivity(intentSMS);
             }
 
 
         }
     }
-    private void sendSMS(String phoneNumber, String message)
-    {
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNumber, null, message, null, null);
-    }
+
 
 }

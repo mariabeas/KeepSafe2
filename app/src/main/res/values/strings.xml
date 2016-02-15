@@ -60,6 +60,11 @@
     <string name="txtNombre">Nombre</string>
     <string name="txtTlf">Teléfono</string>
 
+    <!-- Strings de la pantalla de los SMS-->
+    <string name="edtContacto">Introduzca el teléfono </string>
+    <string name="edtSMS">Introduzca el mensaje que desee enviar</string>
+    <string name="btnEnviarSMS">Enviar</string>
+
 
 
 </resources>
