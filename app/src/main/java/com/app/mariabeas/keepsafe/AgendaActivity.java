@@ -52,8 +52,8 @@ public class AgendaActivity extends AppCompatActivity {
                 adaptador.addEmergencia(e);
             }
         });
-        MiListener listener=new MiListener();
-        btnAdd.setOnClickListener(listener);
+        /*MiListener listener=new MiListener();
+        btnAdd.setOnClickListener(listener);*/
 
     }
     private class MiListener implements View.OnClickListener {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,7 @@ public class MenuActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(listener);
         btnCerrar.setOnClickListener(listener);
         btnAgenda.setOnClickListener(listener);
+        btnSMS.setOnClickListener(listener);
     }
     private class MiListener implements View.OnClickListener{
 
@@ -55,10 +57,19 @@ public class MenuActivity extends AppCompatActivity {
             }else if(v.getId()==R.id.btnAgenda){
                 Intent intentAgenda=new Intent(MenuActivity.this,AgendaActivity.class);
                 startActivity(intentAgenda);
+            }else if(v.getId()==R.id.btnSMS){
+                sendSMS("10058", "PROBANDO!");
+                Intent intentSMS=new Intent(MenuActivity.this,MenuActivity.class);
+                startActivity(intentSMS);
             }
 
 
         }
+    }
+    private void sendSMS(String phoneNumber, String message)
+    {
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(phoneNumber, null, message, null, null);
     }
 
 }

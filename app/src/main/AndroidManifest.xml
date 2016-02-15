@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
 
+    <!-- Para poder mandar sms-->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
 
 
     <application
