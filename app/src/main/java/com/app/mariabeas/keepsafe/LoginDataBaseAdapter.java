@@ -170,6 +170,8 @@ public class LoginDataBaseAdapter {
         updatedValues.put(usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN, numSeguridad);
 
         String where=usuariosDBInfo.EMAIL_COLUMN+" = ?";
+        //INSERTAR LA FILA EN LA TABLE
+       // db.insert(usuariosDBInfo.TABLE_NAME, null, updatedValues);
         db.update(usuariosDBInfo.TABLE_NAME, updatedValues, where, new String[]{mail});
 
     }

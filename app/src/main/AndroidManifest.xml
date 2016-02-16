@@ -111,6 +111,11 @@
         <activity android:name=".EnviarSMSActivity"
             android:label="@string/app_name"/>
 
+
+        <!-- Pantalla de los datos guardados-->
+        <activity android:name=".DatosGuardadosActivity"
+            android:label="@string/app_name"/>
+
         <!-- Facebook activity para poder usar el login o lo de compartir de facebook -->
 
         <activity

@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText edtUser;
     EditText edtPassword;
     CheckBox box;
-
+    EditText edtRecuperar;
+    Context context=this;
     LoginDataBaseAdapter loginDBAdapter;
 
 
@@ -48,9 +49,7 @@ public class MainActivity extends AppCompatActivity {
         MiListener listener = new MiListener();
         btnInicio.setOnClickListener(listener);
         btnRegistro.setOnClickListener(listener);
-
-        MiListener listener2=new MiListener();
-        btnRecuperar.setOnClickListener(listener2);
+        btnRecuperar.setOnClickListener(listener);
 
     }
 
@@ -81,6 +80,33 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intentactivity);
                 }if(v.getId()==R.id.btnRecuperar){
                     //DIALOGO PARA RECUPERAR CONTRASEÑA
+                    final View addView=getLayoutInflater().inflate(R.layout.recuperar_contrasenia_dialog,null);
+
+                    AlertDialog.Builder alertDialogBuilder=new AlertDialog.Builder(getParent());
+
+                    //TITULO DEL ALERT DIALOG
+                    alertDialogBuilder.setTitle("Recuperar contraseña");
+                    alertDialogBuilder.setView(addView);
+                    edtRecuperar=(EditText)addView.findViewById(R.id.edtRecuperar);
+
+                    alertDialogBuilder
+                            .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    edtRecuperar = (EditText) addView.findViewById(R.id.edtRecuperar);
+                                    String email = edtRecuperar.getEditableText().toString();
+                                    Usuario u = new Usuario();
+                                    u.setEmailUsuario(email);
+                                }
+                            })
+                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                  dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
 
                 }
             }

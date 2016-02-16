@@ -79,19 +79,9 @@ public class EnviarSMSActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No se puede enviar, los datos son incorrectos", Toast.LENGTH_SHORT).show();
             }
         }};
-               // sendSMS("5556", "Hi You got a message!");
-                /*
-                *  Intent intentSMS = new Intent(EnviarSMSActivity.this, .class);
-                    startActivity(intentSMS);*/
+
             }
 
 
 
-
-
-    private void sendSMS(String phoneNumber, String message)
-    {
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage("phoneNumber", null, "message", null, null);
-    }
 }

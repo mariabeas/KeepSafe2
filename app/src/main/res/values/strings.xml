@@ -65,6 +65,9 @@
     <string name="edtSMS">Introduzca el mensaje que desee enviar</string>
     <string name="btnEnviarSMS">Enviar</string>
 
+    <!-- Strings de la pantalla datos guardados-->
+    <string name="btnVolverMenu">Volver al menú</string>
+
 
 
 </resources>
