@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,49 +11,57 @@
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/candado"
         android:src="@drawable/avatar"
-        android:layout_above="@+id/edtUser"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center_horizontal" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="@string/edtUser"
         android:ems="10"
         android:id="@+id/edtUser"
-        android:layout_above="@+id/edtNombreAgenda"
+        android:layout_below="@+id/candado"
         android:layout_alignLeft="@+id/edtNombreAgenda"
-        android:layout_alignStart="@+id/edtNombreAgenda" />
+        android:layout_alignStart="@+id/edtNombreAgenda"
+        android:layout_gravity="center_horizontal" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/edtNombreAgenda"
-        android:layout_above="@+id/edtApellido"
+        android:hint="Nombre"
+        android:layout_below="@+id/edtUser"
         android:layout_alignLeft="@+id/edtApellido"
         android:layout_alignStart="@+id/edtApellido"
-        android:hint="Nombre" />
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="@string/edtApellido"
         android:ems="10"
         android:id="@+id/edtApellido"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/edtNombreAgenda"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="date"
@@ -62,9 +70,11 @@
         android:hint="@string/edtFecha"
         android:layout_below="@+id/edtApellido"
         android:layout_alignLeft="@+id/edtApellido"
-        android:layout_alignStart="@+id/edtApellido" />
+        android:layout_alignStart="@+id/edtApellido"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -73,9 +83,11 @@
         android:id="@+id/edtSexo"
         android:layout_below="@+id/edtFecha"
         android:layout_alignLeft="@+id/edtFecha"
-        android:layout_alignStart="@+id/edtFecha" />
+        android:layout_alignStart="@+id/edtFecha"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -84,9 +96,11 @@
         android:id="@+id/edtSangre"
         android:layout_below="@+id/edtSexo"
         android:layout_alignLeft="@+id/edtSexo"
-        android:layout_alignStart="@+id/edtSexo" />
+        android:layout_alignStart="@+id/edtSexo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -95,7 +109,9 @@
         android:hint="@string/edtNum"
         android:layout_below="@+id/edtSangre"
         android:layout_alignLeft="@+id/edtSangre"
-        android:layout_alignStart="@+id/edtSangre" />
+        android:layout_alignStart="@+id/edtSangre"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -103,6 +119,8 @@
         android:text="@string/btnVolverMenu"
         android:id="@+id/btnVolverMenu"
         android:layout_below="@+id/edtNum"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
 
-</RelativeLayout>
+</LinearLayout>

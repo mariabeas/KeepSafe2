@@ -98,9 +98,18 @@ public class DatosActivity extends AppCompatActivity {
                     u.setSexo(sexo);
                     u.setGrupoSanguineo(sangre);
                     u.setNumSeguridadSocial(num);*/
-                    Intent intentGuardar=new Intent (DatosActivity.this,MenuActivity.class);
+
+                    Intent intentGuardar=new Intent (DatosActivity.this,DatosGuardadosActivity.class);
+                    intentGuardar.putExtra("nombre",edtNombre.getText().toString());
+                    intentGuardar.putExtra("email",edtUser.getText().toString());
+                    intentGuardar.putExtra("apellido",edtApellido.getText().toString());
+                    intentGuardar.putExtra("fecha",edtFecha.getText().toString());
+                    intentGuardar.putExtra("sexo",edtSexo.getText().toString());
+                    intentGuardar.putExtra("sangre",edtSangre.getText().toString());
+                    intentGuardar.putExtra("numSeguridad",edtNum.getText().toString());
                     startActivity(intentGuardar);
-                    adaptador.notifyDataSetChanged();
+
+                   // adaptador.notifyDataSetChanged();
                 }
                 if(v.getId()==R.id.btnCambiar) {
                     //PARA PASAR DE UNA PANTALLA A OTRA
