@@ -22,8 +22,10 @@ public class DatosGuardadosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.datos_guardados);
         Button btnVolverMenu=(Button)findViewById(R.id.btnVolverMenu);
+        Button btnEditarDatos=(Button)findViewById(R.id.btnEditarDatos);
         MiListener listener=new MiListener();
         btnVolverMenu.setOnClickListener(listener);
+        btnEditarDatos.setOnClickListener(listener);
         tvNombre=(TextView)findViewById(R.id.edtNombreAgenda);
         tvNombre.setText(getIntent().getStringExtra("nombre"));
         tvEmail=(TextView)findViewById(R.id.edtUser);
@@ -48,6 +50,9 @@ public class DatosGuardadosActivity extends AppCompatActivity {
             if(v.getId()==R.id.btnVolverMenu){
                 Intent intentVolver=new Intent (DatosGuardadosActivity.this,MenuActivity.class);
                 startActivity(intentVolver);
+            }else if(v.getId()==R.id.btnEditarDatos){
+                Intent intentEditar=new Intent(DatosGuardadosActivity.this,DatosActivity.class);
+                startActivity(intentEditar);
             }
         }
 

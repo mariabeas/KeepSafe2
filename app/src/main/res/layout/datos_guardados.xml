@@ -14,16 +14,6 @@
         android:layout_alignParentEnd="true"
         android:layout_gravity="right" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/candado"
-        android:src="@drawable/avatar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:layout_gravity="center_horizontal" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -122,5 +112,12 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnEditarDatos"
+        android:id="@+id/btnEditarDatos"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

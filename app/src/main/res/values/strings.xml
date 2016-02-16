@@ -67,6 +67,7 @@
 
     <!-- Strings de la pantalla datos guardados-->
     <string name="btnVolverMenu">Volver al menú</string>
+    <string name="btnEditarDatos">Editar datos</string>
 
 
 

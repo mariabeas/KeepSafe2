@@ -47,7 +47,7 @@ public class MenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             if(v.getId()==R.id.btnDatos) {
                 //PARA PASAR DE UNA PANTALLA A OTRA
-                Intent intentDatos = new Intent(MenuActivity.this, DatosActivity.class);
+                Intent intentDatos = new Intent(MenuActivity.this, DatosGuardadosActivity.class);
                 startActivity(intentDatos);
             }else if(v.getId()==R.id.btnUbicacion){
                 Intent intentUbi=new Intent(MenuActivity.this,UbicacionActivity.class);
