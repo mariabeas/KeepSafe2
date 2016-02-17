@@ -68,6 +68,14 @@
     <!-- Strings de la pantalla datos guardados-->
     <string name="btnVolverMenu">Volver al menú</string>
     <string name="btnEditarDatos">Editar datos</string>
+    <string name="tvEmail">Email: </string>
+    <string name="tvNombre">Nombre: </string>
+    <string name="tvApellido">Apellidos: </string>
+    <string name="tvFecha">Fecha nacimiento: </string>
+    <string name="tvSexo">Sexo: </string>
+    <string name="tvSangre">Grupo sanguíneo: </string>
+    <string name="tvNum">Núm.Seguridad social: </string>
+
 
 
 

@@ -29,7 +29,7 @@ public class RegistroActivity extends AppCompatActivity {
         loginDBAdapter=loginDBAdapter.open();
         //ELEMENTOS DE LA INTERFAZ
         logo=(ImageView)findViewById(R.id.logo);
-        avatar=(ImageView)findViewById(R.id.candado);
+        avatar=(ImageView)findViewById(R.id.avatarGuardado);
         edtUsuario=(EditText)findViewById(R.id.edtUsuario);
         edtPass=(EditText)findViewById(R.id.edtPass);
         edtConfiPass=(EditText)findViewById(R.id.edtConfiPass);

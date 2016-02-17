@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -18,6 +19,7 @@ public class DatosGuardadosActivity extends AppCompatActivity {
     TextView tvSexo;
     TextView tvSangre;
     TextView tvNum;
+    ImageView image;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.datos_guardados);
@@ -40,6 +42,9 @@ public class DatosGuardadosActivity extends AppCompatActivity {
         tvSangre.setText(getIntent().getStringExtra("sangre"));
         tvNum=(TextView)findViewById(R.id.edtNum);
         tvNum.setText(getIntent().getStringExtra("numSeguridad"));
+        image=(ImageView)findViewById(R.id.imageView);
+        int image_link=getIntent().getIntExtra("image",R.drawable.avatar);
+        image.setImageResource(image_link);
 
     }
 

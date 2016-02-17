@@ -79,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intentactivity = new Intent(MainActivity.this, RegistroActivity.class);
                     startActivity(intentactivity);
                 }if(v.getId()==R.id.btnRecuperar){
+                    Intent intentRecuperar=new Intent(MainActivity.this,MainActivity.class);
+                    startActivity(intentRecuperar);
                     //DIALOGO PARA RECUPERAR CONTRASEÑA
-                    final View addView=getLayoutInflater().inflate(R.layout.recuperar_contrasenia_dialog,null);
+                  /*  final View addView=getLayoutInflater().inflate(R.layout.recuperar_contrasenia_dialog,null);
 
                     AlertDialog.Builder alertDialogBuilder=new AlertDialog.Builder(getParent());
 
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                     AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
+                    alertDialog.show();*/
 
                 }
             }

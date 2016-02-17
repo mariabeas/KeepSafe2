@@ -23,7 +23,7 @@ public class CambiarPassActivity extends AppCompatActivity {
 
         //ELEMENTOS DE LA INTERFAZ
         logo=(ImageView)findViewById(R.id.logo);
-        candado=(ImageView)findViewById(R.id.candado);
+        candado=(ImageView)findViewById(R.id.avatarGuardado);
         Button btnAceptar=(Button)findViewById(R.id.btnAceptar);
         passActual=(TextView)findViewById(R.id.edtPassActual);
         nuevaPass=(TextView)findViewById(R.id.edtNuevaPass);

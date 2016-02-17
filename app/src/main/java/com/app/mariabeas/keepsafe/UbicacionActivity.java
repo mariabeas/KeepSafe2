@@ -1,19 +1,29 @@
 package com.app.mariabeas.keepsafe;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Maria on 03/02/2016.
@@ -22,13 +32,24 @@ public class UbicacionActivity extends AppCompatActivity {
     ImageView logo;
     GoogleMap googleMapa;
     MapView vistaMapa;
+   // TextView tvUbicacion;
+    TextView tvDireccion;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ubicacion);
 
+        //Para agregar al LocationManager un nuevo LocationListener
+        // que escuche las actualización de ubicación del GPS.
+        LocationManager locManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        MyLocationListener locListener=new MyLocationListener();
+        locListener.setUbicacionActivity(this);
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,(LocationListener)locListener);
+
         //ELEMENTOS DE LA INTERFAZ
+        //tvUbicacion=(TextView)findViewById(R.id.tvUbicacion);
+        tvDireccion=(TextView)findViewById(R.id.tvDireccion);
         logo = (ImageView) findViewById(R.id.logo);
         vistaMapa = (MapView) findViewById(R.id.miMapa);
 
@@ -77,36 +98,47 @@ public class UbicacionActivity extends AppCompatActivity {
         googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }*/
-    public void onLocationChanged(Location loc){
+   /* public void onLocationChanged(Location loc){
         //ESTE METODO SE EJECUTA CADA VEZ  QUE EL GPS RECIBE NUEVAS COORDENADAS
         loc.getLatitude();
-        loc.getAltitude();
-        String text="Mi ubicación actual es: "+"\n Lat= "+ loc.getLatitude() + "\n Alt= "+ loc.getAltitude();
+        loc.getLongitude();
+        String ubicacion="Mi ubicación actual es: "+"\n Lat= "+ loc.getLatitude() + "\n Alt= "+ loc.getLongitude();
+        tvUbicacion.setText(ubicacion);
+        //this.mainActivity.setLocation(loc);
 
+
+    }*/
+
+    public void setLocation(Location location) {
+        //OBTENER LA DIRECCION DE LA CALLE A PARTIR DE LA LATITUD Y LA LONGITUD
+        if(location.getLatitude()!=0.0&&location.getLongitude()!=0.0) {
+            Geocoder geocoder=new Geocoder(this, Locale.getDefault());
+            try {
+                List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                if(!list.isEmpty()){
+                    Address direccion=list.get(0);
+                    tvDireccion.setText("Mi dirección es: \n"+direccion.getAddressLine(0));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
     /*
-    * @Override
-	public void onLocationChanged(Location loc) {
-		// Este mŽtodo se ejecuta cada vez que el GPS recibe nuevas coordenadas
-		// debido a la detecci—n de un cambio de ubicacion
-		loc.getLatitude();
-		loc.getLongitude();
-		String Text = "Mi ubicaci—n actual es: " + "\n Lat = "
-				+ loc.getLatitude() + "\n Long = " + loc.getLongitude();
-		messageTextView.setText(Text);
-		this.mainActivity.setLocation(loc);
-	}
+    *
 
 	@Override
 	public void onProviderDisabled(String provider) {
 		// Este mŽtodo se ejecuta cuando el GPS es desactivado
-		messageTextView.setText("GPS Desactivado");
+		tvUbicacion.setText("GPS Desactivado");
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
 		// Este mŽtodo se ejecuta cuando el GPS es activado
-		messageTextView.setText("GPS Activado");
+		tvUbicacion.setText("GPS Activado");
 	}
 
 	@Override

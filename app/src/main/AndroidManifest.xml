@@ -4,9 +4,13 @@
 
     <!-- Permisos para google play services -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Encontrar ubicacion -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+
     <!-- Para escribir en la cache en la memoria externa del movil -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

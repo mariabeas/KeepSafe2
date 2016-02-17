@@ -16,7 +16,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/candado"
+        android:id="@+id/avatarGuardado"
         android:src="@drawable/avatar"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/btnFoto"
         android:id="@+id/btnFoto"
-        android:layout_below="@+id/candado"
+        android:layout_below="@+id/avatarGuardado"
         android:layout_centerHorizontal="true"
         android:text="@string/btnFoto" />
 
@@ -126,6 +126,6 @@
         android:text="@string/btnGuardar"
         android:id="@+id/btnGuardar"
         android:layout_below="@+id/edtNum"
-        android:layout_toRightOf="@+id/candado"
-        android:layout_toEndOf="@+id/candado" />
+        android:layout_toRightOf="@+id/avatarGuardado"
+        android:layout_toEndOf="@+id/avatarGuardado" />
 </RelativeLayout>
