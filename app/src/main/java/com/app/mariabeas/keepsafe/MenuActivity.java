@@ -1,15 +1,13 @@
 package com.app.mariabeas.keepsafe;
 
-import android.content.BroadcastReceiver;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 /**
@@ -19,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
     ImageView logo;
+    Context context=this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
@@ -27,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         Button btnDatos=(Button)findViewById(R.id.btnDatos);
         Button btnAgenda=(Button)findViewById(R.id.btnAgenda);
         Button btnSMS=(Button)findViewById(R.id.btnSMS);
-        Button btnUbicacion=(Button)findViewById(R.id.btnUbicacion);
+        Button btnUbicacion=(Button)findViewById(R.id.btnUbicacion2);
         Button btnInfo=(Button)findViewById(R.id.btnInfo);
         Button btnCerrar=(Button)findViewById(R.id.btnCerrar);
 
@@ -49,15 +48,37 @@ public class MenuActivity extends AppCompatActivity {
                 //PARA PASAR DE UNA PANTALLA A OTRA
                 Intent intentDatos = new Intent(MenuActivity.this, DatosGuardadosActivity.class);
                 startActivity(intentDatos);
-            }else if(v.getId()==R.id.btnUbicacion){
+            }else if(v.getId()==R.id.btnUbicacion2){
                 Intent intentUbi=new Intent(MenuActivity.this,UbicacionActivity.class);
                 startActivity(intentUbi);
             }else if(v.getId()==R.id.btnInfo){
                 Intent intentInfo=new Intent(MenuActivity.this,InformacionActivity.class);
                 startActivity(intentInfo);
             }else if(v.getId()==R.id.btnCerrar){
-                Intent intentCerrar=new Intent(MenuActivity.this,MainActivity.class);
-                startActivity(intentCerrar);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                // Titulo del AlertDialog
+                alertDialogBuilder.setTitle("¿Seguro que desea cerrar sesión?");
+
+                alertDialogBuilder
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intentLogin =new Intent(MenuActivity.this,MainActivity.class);
+                                startActivity(intentLogin);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }else if(v.getId()==R.id.btnAgenda){
                 Intent intentAgenda=new Intent(MenuActivity.this,AgendaActivity.class);
                 startActivity(intentAgenda);

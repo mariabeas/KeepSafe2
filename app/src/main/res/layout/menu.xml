@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btnUbicacion"
-        android:id="@+id/btnUbicacion"
+        android:id="@+id/btnUbicacion2"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/btnSMS"
         android:layout_alignLeft="@+id/btnSMS"
@@ -69,11 +69,11 @@
         android:id="@+id/btnInfo"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/btnUbicacion"
-        android:layout_alignLeft="@+id/btnUbicacion"
-        android:layout_alignStart="@+id/btnUbicacion"
-        android:layout_alignRight="@+id/btnUbicacion"
-        android:layout_alignEnd="@+id/btnUbicacion" />
+        android:layout_below="@+id/btnUbicacion2"
+        android:layout_alignLeft="@+id/btnUbicacion2"
+        android:layout_alignStart="@+id/btnUbicacion2"
+        android:layout_alignRight="@+id/btnUbicacion2"
+        android:layout_alignEnd="@+id/btnUbicacion2" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

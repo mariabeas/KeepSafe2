@@ -76,6 +76,10 @@
     <string name="tvSangre">Grupo sanguíneo: </string>
     <string name="tvNum">Núm.Seguridad social: </string>
 
+    <!--Strings de la pantalla ubicacion -->
+    <string name="tvUbicacion">Ubicación actual</string>
+    <string name="tvDireccion">Dirección actual</string>
+
 
 
 

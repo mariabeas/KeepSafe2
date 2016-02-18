@@ -25,9 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="@string/tvUbicacion"
         android:id="@+id/tvUbicacion"
-        android:layout_marginTop="51dp"
         android:layout_below="@+id/miMapa"
         android:layout_centerHorizontal="true" />
 
@@ -35,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="@string/tvDireccion"
         android:id="@+id/tvDireccion"
         android:layout_below="@+id/tvUbicacion"
         android:layout_alignLeft="@+id/tvUbicacion"

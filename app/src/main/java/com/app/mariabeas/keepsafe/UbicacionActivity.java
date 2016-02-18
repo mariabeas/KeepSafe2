@@ -2,6 +2,7 @@ package com.app.mariabeas.keepsafe;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +35,7 @@ public class UbicacionActivity extends AppCompatActivity {
     ImageView logo;
     GoogleMap googleMapa;
     MapView vistaMapa;
-   // TextView tvUbicacion;
+    TextView tvUbicacion;
     TextView tvDireccion;
 
 
@@ -47,11 +50,14 @@ public class UbicacionActivity extends AppCompatActivity {
         locListener.setUbicacionActivity(this);
         locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,(LocationListener)locListener);
 
+
+
         //ELEMENTOS DE LA INTERFAZ
-        //tvUbicacion=(TextView)findViewById(R.id.tvUbicacion);
+        tvUbicacion=(TextView)findViewById(R.id.tvUbicacion);
         tvDireccion=(TextView)findViewById(R.id.tvDireccion);
         logo = (ImageView) findViewById(R.id.logo);
         vistaMapa = (MapView) findViewById(R.id.miMapa);
+
 
         vistaMapa.onCreate(savedInstanceState);
         //inicializar google map
@@ -91,23 +97,7 @@ public class UbicacionActivity extends AppCompatActivity {
         vistaMapa.onResume();
     }
 
-   /* public void onMapReady(GoogleMap googleMap) {
-        googleMapa=googleMap;
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }*/
-   /* public void onLocationChanged(Location loc){
-        //ESTE METODO SE EJECUTA CADA VEZ  QUE EL GPS RECIBE NUEVAS COORDENADAS
-        loc.getLatitude();
-        loc.getLongitude();
-        String ubicacion="Mi ubicación actual es: "+"\n Lat= "+ loc.getLatitude() + "\n Alt= "+ loc.getLongitude();
-        tvUbicacion.setText(ubicacion);
-        //this.mainActivity.setLocation(loc);
 
-
-    }*/
 
     public void setLocation(Location location) {
         //OBTENER LA DIRECCION DE LA CALLE A PARTIR DE LA LATITUD Y LA LONGITUD
@@ -117,7 +107,11 @@ public class UbicacionActivity extends AppCompatActivity {
                 List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                 if(!list.isEmpty()){
                     Address direccion=list.get(0);
-                    tvDireccion.setText("Mi dirección es: \n"+direccion.getAddressLine(0));
+                    tvDireccion.setText("Mi dirección es: \n" + String.valueOf(direccion.getAddressLine(0)));
+                    //String ubicacion="Mi ubicación actual es: "+"\n Latitud= "+location.getLatitude()+"\n Longitud= "+location.getLongitude();
+                    String ubicacion="Mi ubicación actual es: "+"\n Latitud: "+ String.valueOf(location.getLatitude())+"\n Longitud: "
+                            + String.valueOf(location.getLongitude());
+                    tvUbicacion.setText(ubicacion);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -126,29 +120,7 @@ public class UbicacionActivity extends AppCompatActivity {
 
         }
     }
-    /*
-    *
 
-	@Override
-	public void onProviderDisabled(String provider) {
-		// Este mŽtodo se ejecuta cuando el GPS es desactivado
-		tvUbicacion.setText("GPS Desactivado");
-	}
 
-	@Override
-	public void onProviderEnabled(String provider) {
-		// Este mŽtodo se ejecuta cuando el GPS es activado
-		tvUbicacion.setText("GPS Activado");
-	}
 
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// Este mŽtodo se ejecuta cada vez que se detecta un cambio en el
-		// status del proveedor de localizaci—n (GPS)
-		// Los diferentes Status son:
-		// OUT_OF_SERVICE -> Si el proveedor esta fuera de servicio
-		// TEMPORARILY_UNAVAILABLE -> Temp˜ralmente no disponible pero se
-		// espera que este disponible en breve
-		// AVAILABLE -> Disponible
-	}*/
 }
