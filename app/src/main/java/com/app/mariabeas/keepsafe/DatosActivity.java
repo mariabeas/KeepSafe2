@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -86,6 +87,9 @@ public class DatosActivity extends AppCompatActivity {
         edtSexo=(EditText)findViewById(R.id.edtSexo);
         edtSangre=(EditText)findViewById(R.id.edtSangre);
         edtNum=(EditText)findViewById(R.id.edtNum);
+        FloatingActionButton btnFoto = (FloatingActionButton) findViewById(R.id.btnFoto);
+        MiListener listener = new MiListener();
+        btnFoto.setOnClickListener(listener);
 
     }
 
@@ -96,8 +100,18 @@ public class DatosActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_datos, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    private class MiListener implements View.OnClickListener {
 
-    @Override
+        @Override
+        public void onClick(View v) {
+
+            if (v.getId() == R.id.btnFoto) {
+                selectImage();
+            }
+        }
+    }
+
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -110,9 +124,7 @@ public class DatosActivity extends AppCompatActivity {
             case R.id.action_save:
                 guardarDatos();
                 return true;
-            case R.id.action_foto:
-                selectImage();
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

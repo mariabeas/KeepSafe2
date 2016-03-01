@@ -15,9 +15,7 @@
         android:id="@+id/action_save"
         android:title="@string/action_save"
         android:showAsAction="never" />
-    <item
-        android:id="@+id/action_foto"
-        android:title="@string/action_foto"
-        android:showAsAction="never" />
+
+
 
 </menu>

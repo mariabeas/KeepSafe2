@@ -74,8 +74,9 @@
         android:layout_height="wrap_content"
         android:text="@string/btnRecuperar"
         android:id="@+id/btnRecuperar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/checkBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
 
 
 </RelativeLayout>
