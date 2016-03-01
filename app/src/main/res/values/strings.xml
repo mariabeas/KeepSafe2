@@ -81,6 +81,12 @@
     <string name="tvDireccion">Dirección actual</string>
 
 
+    <!-- Strings de Action Bar del Menu datos -->
+    <string name="action_logout">Cerrar sesión</string>
+    <string name="action_foto">Cambiar foto</string>
+    <string name="action_save">Guardar datos</string>
+    <string name="action_pass">Cambiar contraseña</string>
+
 
 
 </resources>

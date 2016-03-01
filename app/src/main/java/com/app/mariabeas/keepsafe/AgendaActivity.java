@@ -31,6 +31,7 @@ public class AgendaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agenda);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //DECLARAR ELEMENTOS DE LA INTERFAZ
         ListView lista=(ListView)findViewById(R.id.listaTelefonos);

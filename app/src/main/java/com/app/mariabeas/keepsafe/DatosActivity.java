@@ -1,6 +1,7 @@
 package com.app.mariabeas.keepsafe;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +13,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,6 +46,7 @@ public class DatosActivity extends AppCompatActivity {
     final int CAMERA_REQUEST;
     final int SELECT_FILE;
 
+    Context context=this;
     LoginDataBaseAdapter loginDBAdapter;
     private AdapterUsuario adaptador;
 
@@ -53,17 +60,23 @@ public class DatosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.datos);
 
+
         //Crear una instancia de SQLiteDataBase
         loginDBAdapter = new LoginDataBaseAdapter(this);
         loginDBAdapter = loginDBAdapter.open();
 
         adaptador=new AdapterUsuario(this);
 
+        //Declaramos el toolbar del menu datos
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_datos);
+        setSupportActionBar(toolbar);
+        //para poner el boton de volver al menu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Modificar datos");
+
+
 
         //ELEMENTOS DE LA INTERFAZ
-        Button btnCambiar=(Button)findViewById(R.id.btnCambiar);
-        Button btnFoto=(Button)findViewById(R.id.btnFoto);
-        Button btnGuardar=(Button)findViewById(R.id.btnGuardar);
         logo=(ImageView)findViewById(R.id.logo);
         avatar=(ImageView)findViewById(R.id.avatarGuardado);
         edtUser=(EditText)findViewById(R.id.edtUser);
@@ -74,63 +87,105 @@ public class DatosActivity extends AppCompatActivity {
         edtSangre=(EditText)findViewById(R.id.edtSangre);
         edtNum=(EditText)findViewById(R.id.edtNum);
 
-        MiListener listener=new MiListener();
-        btnCambiar.setOnClickListener(listener);
-        btnGuardar.setOnClickListener(listener);
-        btnFoto.setOnClickListener(listener);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_datos, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-
-
-    private class MiListener implements View.OnClickListener{
-
-        @Override
-        public void onClick(View v) {
-            String usuario=((EditText)findViewById(R.id.edtUser)).getText().toString();
-            String nombre=((EditText)findViewById(R.id.edtNombreAgenda)).getText().toString();
-            String apellido=((EditText)findViewById(R.id.edtApellido)).getText().toString();
-            String fecha=((EditText)findViewById(R.id.edtFecha)).getText().toString();
-            String sexo=((EditText)findViewById(R.id.edtSexo)).getText().toString();
-            String sangre=((EditText)findViewById(R.id.edtSangre)).getText().toString();
-            String num=((EditText)findViewById(R.id.edtNum)).getText().toString();
-            String foto=((Button)findViewById(R.id.btnFoto)).getText().toString();
-
-            if(v.getId()==R.id.btnGuardar){
-                //comprobar que los campos no estan vacios
-                if (nombre.equals(null) || usuario.equals(null) || apellido.equals(null) ||
-                        fecha.equals(null) || sexo.equals(null) || sangre.equals(null) || num.equals(null)) {
-                    Toast.makeText(getApplicationContext(), "Completa los datos", Toast.LENGTH_SHORT).show();
-                    return;
-
-            } else{
-                    LoginDataBaseAdapter.updateEntry(usuario, nombre, apellido, fecha, sexo, sangre, num);
-                    Toast.makeText(getApplicationContext(), "Datos modificados", Toast.LENGTH_SHORT).show();
-                    //GUARDAR DATOS
-
-                    Intent intentGuardar=new Intent (DatosActivity.this,DatosGuardadosActivity.class);
-                    intentGuardar.putExtra("nombre",edtNombre.getText().toString());
-                    intentGuardar.putExtra("email",edtUser.getText().toString());
-                    intentGuardar.putExtra("apellido",edtApellido.getText().toString());
-                    intentGuardar.putExtra("fecha",edtFecha.getText().toString());
-                    intentGuardar.putExtra("sexo",edtSexo.getText().toString());
-                    intentGuardar.putExtra("sangre",edtSangre.getText().toString());
-                    intentGuardar.putExtra("numSeguridad",edtNum.getText().toString());
-                    intentGuardar.putExtra("image",R.drawable.avatar);
-                    startActivity(intentGuardar);
-
-                }
-                if(v.getId()==R.id.btnCambiar) {
-                    //PARA PASAR DE UNA PANTALLA A OTRA
-                    Intent intentactivity = new Intent(DatosActivity.this, CambiarPassActivity.class);
-                    startActivity(intentactivity);
-                }
-            }else if(v.getId()==R.id.btnFoto){
-                //SELECCIONAR FOTO
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_pass:
+                cambiarPass();
+                return true;
+            case R.id.action_logout:
+                cerrarSesion();
+                return true;
+            case R.id.action_save:
+                guardarDatos();
+                return true;
+            case R.id.action_foto:
                 selectImage();
-            }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
+    public void cambiarPass(){
+        //METODO SIN TERMINAR
+        //PARA PASAR DE UNA PANTALLA A OTRA
+        Intent intentactivity = new Intent(DatosActivity.this, CambiarPassActivity.class);
+        startActivity(intentactivity);
+    }
+    public void guardarDatos(){
+        String usuario=((EditText)findViewById(R.id.edtUser)).getText().toString();
+        String nombre=((EditText)findViewById(R.id.edtNombreAgenda)).getText().toString();
+        String apellido=((EditText)findViewById(R.id.edtApellido)).getText().toString();
+        String fecha=((EditText)findViewById(R.id.edtFecha)).getText().toString();
+        String sexo=((EditText)findViewById(R.id.edtSexo)).getText().toString();
+        String sangre=((EditText)findViewById(R.id.edtSangre)).getText().toString();
+        String num=((EditText)findViewById(R.id.edtNum)).getText().toString();
+       // String foto=((Button)findViewById(R.id.btnFoto)).getText().toString();
+
+            //comprobar que los campos no estan vacios
+            if (nombre.equals(null) || usuario.equals(null) || apellido.equals(null) ||
+                    fecha.equals(null) || sexo.equals(null) || sangre.equals(null) || num.equals(null)) {
+                Toast.makeText(getApplicationContext(), "Completa los datos", Toast.LENGTH_SHORT).show();
+                return;
+
+            } else{
+                LoginDataBaseAdapter.updateEntry(usuario, nombre, apellido, fecha, sexo, sangre, num);
+                Toast.makeText(getApplicationContext(), "Datos modificados", Toast.LENGTH_SHORT).show();
+                //GUARDAR DATOS
+
+                Intent intentGuardar=new Intent (DatosActivity.this,DatosGuardadosActivity.class);
+                intentGuardar.putExtra("nombre",edtNombre.getText().toString());
+                intentGuardar.putExtra("email",edtUser.getText().toString());
+                intentGuardar.putExtra("apellido",edtApellido.getText().toString());
+                intentGuardar.putExtra("fecha",edtFecha.getText().toString());
+                intentGuardar.putExtra("sexo",edtSexo.getText().toString());
+                intentGuardar.putExtra("sangre",edtSangre.getText().toString());
+                intentGuardar.putExtra("numSeguridad",edtNum.getText().toString());
+                intentGuardar.putExtra("image",R.drawable.avatar);
+                startActivity(intentGuardar);
+
+            }
+    }
+    public void cerrarSesion(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // Titulo del AlertDialog
+        alertDialogBuilder.setTitle("¿Seguro que desea cerrar sesión?");
+
+        alertDialogBuilder
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intentLogin =new Intent(DatosActivity.this,MainActivity.class);
+                        startActivity(intentLogin);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+    }
+
+
     private void selectImage(){
         final CharSequence[] items = { "Hacer foto", "Acceder al carrete", "Cancelar" };
         AlertDialog.Builder builder = new AlertDialog.Builder(DatosActivity.this);
