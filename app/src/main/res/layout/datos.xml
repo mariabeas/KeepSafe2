@@ -135,7 +135,9 @@
         android:layout_below="@+id/logo"
         android:layout_toLeftOf="@+id/logo"
         android:layout_toStartOf="@+id/logo"
-        app:backgroundTint="@color/colorAccent" />
+        app:backgroundTint="#FF4CAF50"
+        app:rippleColor="#FFF"
+       />
 </RelativeLayout>
 
 

@@ -1,5 +1,8 @@
 package com.app.mariabeas.keepsafe;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInstaller;
 import android.graphics.Bitmap;
@@ -7,7 +10,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +35,7 @@ import com.google.android.gms.nearby.sharing.SharedContent;
  */
 public class InformacionActivity extends AppCompatActivity {
     ImageView logo;
+    Context context=this;
     private static String idFB="1654873761420623";
     private FacebookSdk fb;
     /*
@@ -49,6 +56,10 @@ public class InformacionActivity extends AppCompatActivity {
         sh=new ShareDialog(this);
 
         setContentView(R.layout.informacion);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_datos);
+        setSupportActionBar(toolbar);
+        //para poner el boton de volver al menu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Declarar elementos de la interfaz
         logo=(ImageView)findViewById(R.id.logo);
@@ -62,7 +73,52 @@ public class InformacionActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                cerrarSesion();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    public void cerrarSesion(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // Titulo del AlertDialog
+        alertDialogBuilder.setTitle("¿Seguro que desea cerrar sesión?");
+
+        alertDialogBuilder
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intentLogin =new Intent(InformacionActivity.this,MainActivity.class);
+                        startActivity(intentLogin);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+    }
 
     private class MiListener implements View.OnClickListener {
 

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 String contra=edtPassword.getText().toString();
                 String storedPassword=loginDBAdapter.getSingleEntry(user);
                 if (contra.equals(storedPassword)) {
-                    Toast.makeText(getApplicationContext(), "Inicio de sesión correcto", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "¡Bienvenido " +user+"!", Toast.LENGTH_LONG).show();
                     //PASAR A LA SIGUIENTE PANTALLA
                     Intent nuevoIntent = new Intent(MainActivity.this, MenuActivity.class);
                     startActivity(nuevoIntent);

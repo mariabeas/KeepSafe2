@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
@@ -12,5 +14,17 @@
         android:id="@+id/edtRecuperar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_dialog_email"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/colorAccent"
+        android:layout_below="@+id/edtRecuperar"
+        android:layout_toRightOf="@+id/edtRecuperar"
+        android:layout_toEndOf="@+id/edtRecuperar" />
 
 </RelativeLayout>

@@ -2,17 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!-- Toolbar -->
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/menu_datos"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/avatar"
+        android:layout_below="@+id/menu_datos"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/logo"
         android:src="@drawable/logo"
-        android:layout_alignParentTop="true"
+        android:layout_gravity="right"
+        android:layout_alignTop="@+id/imageView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="right" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,9 +66,8 @@
         android:id="@+id/edtApellido"
         android:layout_gravity="center_horizontal"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/tvNum"
-        android:layout_toEndOf="@+id/tvNum"
-        android:layout_marginTop="20dp" />
+        android:layout_toRightOf="@+id/tvFecha"
+        android:layout_toEndOf="@+id/tvFecha" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,10 +77,10 @@
         android:id="@+id/edtFecha"
         android:hint="@string/edtFecha"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="34dp"
         android:layout_below="@+id/edtApellido"
-        android:layout_alignLeft="@+id/btnVolverMenu"
-        android:layout_alignStart="@+id/btnVolverMenu"
-        android:layout_marginTop="30dp" />
+        android:layout_alignRight="@+id/logo"
+        android:layout_alignEnd="@+id/logo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,49 +119,13 @@
         android:ems="10"
         android:id="@+id/edtNum"
         android:hint="@string/edtNum"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="53dp"
+        android:layout_marginLeft="29dp"
         android:layout_below="@+id/edtSangre"
         android:layout_alignLeft="@+id/edtSangre"
         android:layout_alignStart="@+id/edtSangre"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnVolverMenu"
-        android:id="@+id/btnVolverMenu"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="28dp"
-        android:layout_below="@+id/edtNum"
-        android:layout_toRightOf="@+id/btnEditarDatos"
-        android:layout_toEndOf="@+id/btnEditarDatos"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnEditarDatos"
-        android:id="@+id/btnEditarDatos"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_alignBaseline="@+id/btnVolverMenu"
-        android:layout_alignBottom="@+id/btnVolverMenu"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/avatar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginStart="29dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -153,8 +133,8 @@
         android:text="@string/tvEmail"
         android:id="@+id/tvEmail"
         android:layout_above="@+id/edtNombreAgenda"
-        android:layout_alignLeft="@+id/btnEditarDatos"
-        android:layout_alignStart="@+id/btnEditarDatos" />
+        android:layout_toRightOf="@+id/tvSexo"
+        android:layout_toEndOf="@+id/tvSexo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -170,19 +150,18 @@
         android:layout_height="wrap_content"
         android:text="@string/tvApellido"
         android:id="@+id/tvApellido"
-        android:layout_alignTop="@+id/edtApellido"
-        android:layout_alignLeft="@+id/tvFecha"
-        android:layout_alignStart="@+id/tvFecha" />
+        android:layout_above="@+id/edtFecha"
+        android:layout_alignRight="@+id/tvNombre"
+        android:layout_alignEnd="@+id/tvNombre" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvFecha"
         android:id="@+id/tvFecha"
-        android:layout_alignBaseline="@+id/edtFecha"
-        android:layout_alignBottom="@+id/edtFecha"
-        android:layout_alignLeft="@+id/tvSexo"
-        android:layout_alignStart="@+id/tvSexo" />
+        android:layout_alignTop="@+id/edtFecha"
+        android:layout_toRightOf="@+id/tvSexo"
+        android:layout_toEndOf="@+id/tvSexo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -190,8 +169,10 @@
         android:text="@string/tvSexo"
         android:id="@+id/tvSexo"
         android:layout_alignTop="@+id/edtSexo"
-        android:layout_alignLeft="@+id/tvSangre"
-        android:layout_alignStart="@+id/tvSangre" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -199,17 +180,17 @@
         android:text="@string/tvSangre"
         android:id="@+id/tvSangre"
         android:layout_alignTop="@+id/edtSangre"
-        android:layout_alignLeft="@+id/btnEditarDatos"
-        android:layout_alignStart="@+id/btnEditarDatos" />
+        android:layout_toLeftOf="@+id/edtApellido"
+        android:layout_toStartOf="@+id/edtApellido" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvNum"
         android:id="@+id/tvNum"
-        android:layout_above="@+id/btnEditarDatos"
-        android:layout_alignLeft="@+id/btnEditarDatos"
-        android:layout_alignStart="@+id/btnEditarDatos" />
+        android:layout_alignTop="@+id/edtNum"
+        android:layout_alignLeft="@+id/tvSexo"
+        android:layout_alignStart="@+id/tvSexo" />
 
 
 </RelativeLayout>

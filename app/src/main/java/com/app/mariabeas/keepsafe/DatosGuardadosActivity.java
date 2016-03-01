@@ -1,8 +1,15 @@
 package com.app.mariabeas.keepsafe;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,14 +27,11 @@ public class DatosGuardadosActivity extends AppCompatActivity {
     TextView tvSangre;
     TextView tvNum;
     ImageView image;
+    Context context=this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.datos_guardados);
-        Button btnVolverMenu=(Button)findViewById(R.id.btnVolverMenu);
-        Button btnEditarDatos=(Button)findViewById(R.id.btnEditarDatos);
-        MiListener listener=new MiListener();
-        btnVolverMenu.setOnClickListener(listener);
-        btnEditarDatos.setOnClickListener(listener);
+
         tvNombre=(TextView)findViewById(R.id.edtNombreAgenda);
         tvNombre.setText(getIntent().getStringExtra("nombre"));
         tvEmail=(TextView)findViewById(R.id.edtUser);
@@ -46,20 +50,67 @@ public class DatosGuardadosActivity extends AppCompatActivity {
         int image_link=getIntent().getIntExtra("image",R.drawable.avatar);
         image.setImageResource(image_link);
 
+        //Declaramos el toolbar del menu datos guardados
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_datos);
+        setSupportActionBar(toolbar);
+        //para poner el boton de volver al menu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Modificar datos");
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_datos_guardados, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_editar:
+                editarDatos();
+                return true;
+            case R.id.action_logout:
+                cerrarSesion();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public void cerrarSesion(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        // Titulo del AlertDialog
+        alertDialogBuilder.setTitle("¿Seguro que desea cerrar sesión?");
+
+        alertDialogBuilder
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intentLogin =new Intent(DatosGuardadosActivity.this,MainActivity.class);
+                        startActivity(intentLogin);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+    }
+    public void editarDatos(){
+        Intent intentEditar=new Intent(DatosGuardadosActivity.this,DatosActivity.class);
+        startActivity(intentEditar);
     }
 
-    private class MiListener implements View.OnClickListener{
 
-        @Override
-        public void onClick(View v) {
-            if(v.getId()==R.id.btnVolverMenu){
-                Intent intentVolver=new Intent (DatosGuardadosActivity.this,MenuActivity.class);
-                startActivity(intentVolver);
-            }else if(v.getId()==R.id.btnEditarDatos){
-                Intent intentEditar=new Intent(DatosGuardadosActivity.this,DatosActivity.class);
-                startActivity(intentEditar);
-            }
-        }
-
-        }
 }

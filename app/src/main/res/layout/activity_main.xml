@@ -24,8 +24,8 @@
         android:text="@string/btnInicio"
         android:id="@+id/btnInicio"
         android:layout_below="@+id/logo"
-        android:layout_alignLeft="@+id/edtUser"
-        android:layout_alignStart="@+id/edtUser" />
+        android:layout_alignLeft="@+id/logo"
+        android:layout_alignStart="@+id/logo" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -35,8 +35,8 @@
         android:id="@+id/edtPassword"
         android:hint="@string/edtPassword"
         android:layout_below="@+id/edtUser"
-        android:layout_alignLeft="@+id/logo"
-        android:layout_alignStart="@+id/logo" />
+        android:layout_alignLeft="@+id/edtUser"
+        android:layout_alignStart="@+id/edtUser" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,8 +46,9 @@
         android:ems="10"
         android:id="@+id/edtUser"
         android:layout_below="@+id/btnInicio"
-        android:layout_alignLeft="@+id/edtPassword"
-        android:layout_alignStart="@+id/edtPassword" />
+        android:layout_alignRight="@+id/btnRegistro"
+        android:layout_alignEnd="@+id/btnRegistro"
+        android:layout_marginTop="20dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -55,8 +56,8 @@
         android:text="@string/box"
         android:id="@+id/checkBox"
         android:layout_below="@+id/edtPassword"
-        android:layout_alignRight="@+id/btnInicio"
-        android:layout_alignEnd="@+id/btnInicio" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -76,7 +77,24 @@
         android:id="@+id/btnRecuperar"
         android:layout_below="@+id/checkBox"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="15dp" />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/email"
+        android:src="@drawable/ic_email_black_24dp"
+        android:layout_above="@+id/edtPassword"
+        android:layout_toLeftOf="@+id/edtUser"
+        android:layout_toStartOf="@+id/edtUser" />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/loc"
+        android:src="@drawable/ic_lock_black_24dp"
+        android:layout_alignBottom="@+id/edtPassword"
+        android:layout_toLeftOf="@+id/edtPassword"
+        android:layout_toStartOf="@+id/edtPassword" />
+
 
 
 </RelativeLayout>

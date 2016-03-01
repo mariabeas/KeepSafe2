@@ -87,6 +87,9 @@
     <string name="action_save">Guardar datos</string>
     <string name="action_pass">Cambiar contraseña</string>
 
+    <!-- Strings ded Action Bar del Menu datos guardados -->
+    <string name="action_editar">Editar datos</string>
+
 
 
 </resources>
