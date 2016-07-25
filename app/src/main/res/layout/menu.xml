@@ -83,4 +83,22 @@
         android:layout_alignRight="@+id/btnUbicacion2"
         android:layout_alignEnd="@+id/btnUbicacion2" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUbi"
+        android:layout_above="@+id/btnDatos"
+        android:layout_alignLeft="@+id/btnDatos"
+        android:layout_alignStart="@+id/btnDatos"
+        android:text="@string/btnUbi" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnUbi2"
+        android:id="@+id/btnUbi2"
+        android:layout_above="@+id/btnDatos"
+        android:layout_toLeftOf="@+id/logo"
+        android:layout_toStartOf="@+id/logo" />
+
 </RelativeLayout>

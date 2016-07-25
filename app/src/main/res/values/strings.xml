@@ -16,6 +16,8 @@
     <string name="btnUbicacion">Ubicación</string>
     <string name="btnInfo">Información</string>
     <string name="btnCerrar">Cerrar sesión</string>
+    <string name="btnUbi">Ubi</string>
+    <string name="btnUbi2">Ubicacion sin api</string>
 
     <!-- Strings de la pantalla info -->
     <string name="txtInfo">App de ayuda para gente con discapacidad auditiva</string>
@@ -64,6 +66,7 @@
     <string name="edtContacto">Introduzca el teléfono </string>
     <string name="edtSMS">Introduzca el mensaje que desee enviar</string>
     <string name="btnEnviarSMS">Enviar</string>
+    <string name="edtUbicacion">Mi ubicación es</string>
 
     <!-- Strings de la pantalla datos guardados-->
     <string name="btnVolverMenu">Volver al menú</string>
@@ -79,6 +82,7 @@
     <!--Strings de la pantalla ubicacion -->
     <string name="tvUbicacion">Ubicación actual</string>
     <string name="tvDireccion">Dirección actual</string>
+    <string name="btnActualizar">Actualizar dirección</string>
 
 
     <!-- Strings de Action Bar del Menu datos -->
@@ -89,6 +93,11 @@
 
     <!-- Strings ded Action Bar del Menu datos guardados -->
     <string name="action_editar">Editar datos</string>
+
+    <!-- Strings ded Action Bar del Menu agenda -->
+    <string name="action_ubicacion">Obtener ubicación</string>
+
+
 
 
 

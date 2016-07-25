@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -46,10 +47,13 @@ public class DatosActivity extends AppCompatActivity {
     EditText edtNum;
     final int CAMERA_REQUEST;
     final int SELECT_FILE;
+    //CODIGO DE ENVIO DE LOS DATOS A DATOS GUARDADOS
+    public final static int ADD_REQUEST_CODE = 1;
 
     Context context=this;
     LoginDataBaseAdapter loginDBAdapter;
     private AdapterUsuario adaptador;
+
 
     public DatosActivity() {
         SELECT_FILE = 1;
@@ -60,23 +64,6 @@ public class DatosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.datos);
-
-
-        //Crear una instancia de SQLiteDataBase
-        loginDBAdapter = new LoginDataBaseAdapter(this);
-        loginDBAdapter = loginDBAdapter.open();
-
-        adaptador=new AdapterUsuario(this);
-
-        //Declaramos el toolbar del menu datos
-        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_datos);
-        setSupportActionBar(toolbar);
-        //para poner el boton de volver al menu
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Modificar datos");
-
-
-
         //ELEMENTOS DE LA INTERFAZ
         logo=(ImageView)findViewById(R.id.logo);
         avatar=(ImageView)findViewById(R.id.avatarGuardado);
@@ -87,6 +74,25 @@ public class DatosActivity extends AppCompatActivity {
         edtSexo=(EditText)findViewById(R.id.edtSexo);
         edtSangre=(EditText)findViewById(R.id.edtSangre);
         edtNum=(EditText)findViewById(R.id.edtNum);
+
+
+        //Crear una instancia de SQLiteDataBase
+        loginDBAdapter = new LoginDataBaseAdapter(this);
+        loginDBAdapter = loginDBAdapter.open();
+
+        adaptador=new AdapterUsuario(this);
+
+
+        //Declaramos el toolbar del menu datos
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_datos);
+        setSupportActionBar(toolbar);
+        //para poner el boton de volver al menu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Modificar datos");
+
+
+
+
         FloatingActionButton btnFoto = (FloatingActionButton) findViewById(R.id.btnFoto);
         MiListener listener = new MiListener();
         btnFoto.setOnClickListener(listener);
@@ -152,10 +158,7 @@ public class DatosActivity extends AppCompatActivity {
                 return;
 
             } else{
-                LoginDataBaseAdapter.updateEntry(usuario, nombre, apellido, fecha, sexo, sangre, num);
-                Toast.makeText(getApplicationContext(), "Datos modificados", Toast.LENGTH_SHORT).show();
                 //GUARDAR DATOS
-
                 Intent intentGuardar=new Intent (DatosActivity.this,DatosGuardadosActivity.class);
                 intentGuardar.putExtra("nombre",edtNombre.getText().toString());
                 intentGuardar.putExtra("email",edtUser.getText().toString());
@@ -166,6 +169,10 @@ public class DatosActivity extends AppCompatActivity {
                 intentGuardar.putExtra("numSeguridad",edtNum.getText().toString());
                 intentGuardar.putExtra("image",R.drawable.avatar);
                 startActivity(intentGuardar);
+
+                LoginDataBaseAdapter.updateEntry(usuario, nombre, apellido, fecha, sexo, sangre, num);
+                Toast.makeText(getApplicationContext(), "Datos modificados", Toast.LENGTH_SHORT).show();
+
 
             }
     }

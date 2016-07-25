@@ -39,12 +39,23 @@ public class MenuActivity extends AppCompatActivity {
         Button btnUbicacion=(Button)findViewById(R.id.btnUbicacion2);
         Button btnInfo=(Button)findViewById(R.id.btnInfo);
 
+        Button btnUbi=(Button)findViewById(R.id.btnUbi);
+        Button btnUbi2=(Button)findViewById(R.id.btnUbi2);
+
+
         MiListener listener=new MiListener();
         btnDatos.setOnClickListener(listener);
         btnUbicacion.setOnClickListener(listener);
         btnInfo.setOnClickListener(listener);
         btnAgenda.setOnClickListener(listener);
         btnSMS.setOnClickListener(listener);
+
+        btnUbi.setOnClickListener(listener);
+        btnUbi2.setOnClickListener(listener);
+
+
+        //UbicacionNoApi ubi=new UbicacionNoApi(this);
+
     }
 
 
@@ -118,6 +129,14 @@ public class MenuActivity extends AppCompatActivity {
             }else if(v.getId()==R.id.btnSMS){
                 Intent intentSMS=new Intent(MenuActivity.this,EnviarSMSActivity.class);
                 startActivity(intentSMS);
+            }
+            else if(v.getId()==R.id.btnUbi){
+                Intent intentUbi=new Intent(MenuActivity.this,UbiActivity.class);
+                startActivity(intentUbi);
+            }
+            else if(v.getId()==R.id.btnUbi2){
+               Intent intentUbi2=new Intent(MenuActivity.this,UbicacionNoApi.class);
+               startActivity(intentUbi2);
             }
 
 

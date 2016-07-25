@@ -54,7 +54,7 @@ public class RegistroActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                    LoginDataBaseAdapter.insertEntry(usuario,pass);
+                    LoginDataBaseAdapter.insertEntry(usuario,pass,null,null,null,null,null,null);
                     Toast.makeText(getApplicationContext(), "Registro completado", Toast.LENGTH_SHORT).show();
                     //PARA PASAR DE UNA PANTALLA A OTRA
                     Intent intentactivity = new Intent(RegistroActivity.this, MainActivity.class);

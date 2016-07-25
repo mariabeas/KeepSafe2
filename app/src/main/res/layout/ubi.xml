@@ -2,6 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!-- Toolbar -->
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/menu_datos"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -9,7 +17,7 @@
         android:id="@+id/logo"
         android:src="@drawable/logo"
         android:layout_gravity="right"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/menu_datos"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -47,7 +55,6 @@
         android:text="@string/btnActualizar"
         android:id="@+id/btnActualizar"
         android:layout_below="@+id/tvDireccion"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

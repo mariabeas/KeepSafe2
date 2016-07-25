@@ -32,9 +32,10 @@ public class MyLocationListener implements LocationListener {
         //Metodo que se ejecuta cada vez que el GPS recibe nuevas coordenadas al detectar un cambio de ubicacion
         loc.getLatitude();
         loc.getLongitude();
+        
 
        // String ubicacion="Mi ubicación actual es: "+"\n Latitud= "+loc.getLatitude()+"\n Longitud= "+loc.getLongitude();
-        String ubicacion="Mi ubicación actual es: "+"\n Latitud: "+ String.valueOf(loc.getLatitude())+"\n Longitud: "
+        String ubicacion="Mi ubicación actual es: "+"\n Latitud: "+ String.valueOf(loc.getLatitude()+Math.random()*10)+"\n Longitud: "
                 + String.valueOf(loc.getLongitude());
         Toast.makeText(getApplicationContext(), "Ubicación actualizada", Toast.LENGTH_SHORT).show();
         tvUbicacion.setText(ubicacion);
@@ -70,4 +71,5 @@ public class MyLocationListener implements LocationListener {
         tvUbicacion.setText("GPS DESACTIVADO");
 
     }
+
 }

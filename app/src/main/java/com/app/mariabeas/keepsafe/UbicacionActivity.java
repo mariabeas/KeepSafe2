@@ -2,13 +2,13 @@ package com.app.mariabeas.keepsafe;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +17,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,26 +36,32 @@ public class UbicacionActivity extends AppCompatActivity {
     MapView vistaMapa;
     TextView tvUbicacion;
     TextView tvDireccion;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ubicacion);
 
         //Para agregar al LocationManager un nuevo LocationListener
         // que escuche las actualización de ubicación del GPS.
-        LocationManager locManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        MyLocationListener locListener=new MyLocationListener();
+        LocationManager locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        MyLocationListener locListener = new MyLocationListener();
         locListener.setUbicacionActivity(this);
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,(LocationListener)locListener);
-
+        locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0 ,(LocationListener)locListener);
+       // locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) locListener);
 
 
         //ELEMENTOS DE LA INTERFAZ
-        tvUbicacion=(TextView)findViewById(R.id.tvUbicacion);
-        tvDireccion=(TextView)findViewById(R.id.tvDireccion);
+        tvUbicacion = (TextView) findViewById(R.id.tvUbi);
+        tvDireccion = (TextView) findViewById(R.id.tvDireccion);
         logo = (ImageView) findViewById(R.id.logo);
         vistaMapa = (MapView) findViewById(R.id.miMapa);
+        Button btnActualizar=(Button)findViewById(R.id.btnActualizar);
 
 
         vistaMapa.onCreate(savedInstanceState);
@@ -76,7 +81,11 @@ public class UbicacionActivity extends AppCompatActivity {
             return;
         }
         googleMapa.setMyLocationEnabled(true);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
 
 
     @Override
@@ -97,19 +106,27 @@ public class UbicacionActivity extends AppCompatActivity {
         vistaMapa.onResume();
     }
 
+    public void onClick(View v) {
+        if(v.getId()==R.id.btnActualizar) {
+           // setLocation();
+        }
+    }
+    public void setLocation(Location location){
+        getLocation(location);
+    }
 
-
-    public void setLocation(Location location) {
+    public void getLocation(Location location) {
         //OBTENER LA DIRECCION DE LA CALLE A PARTIR DE LA LATITUD Y LA LONGITUD
-        if(location.getLatitude()!=0.0&&location.getLongitude()!=0.0) {
-            Geocoder geocoder=new Geocoder(this, Locale.getDefault());
+        if (location.getLatitude() != 0.0 && location.getLongitude() != 0.0) {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
             try {
-                List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                if(!list.isEmpty()){
-                    Address direccion=list.get(0);
+                List<Address> list = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (!list.isEmpty()) {
+                    Address direccion = list.get(0);
                     tvDireccion.setText("Mi dirección es: \n" + String.valueOf(direccion.getAddressLine(0)));
                     //String ubicacion="Mi ubicación actual es: "+"\n Latitud= "+location.getLatitude()+"\n Longitud= "+location.getLongitude();
-                    String ubicacion="Mi ubicación actual es: "+"\n Latitud: "+ String.valueOf(location.getLatitude())+"\n Longitud: "
+                    String ubicacion = "Mi ubicación actual es: " + "\n Latitud: " + String.valueOf(location.getLatitude()) + "\n Longitud: "
                             + String.valueOf(location.getLongitude());
                     tvUbicacion.setText(ubicacion);
                 }
@@ -117,10 +134,47 @@ public class UbicacionActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
         }
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Ubicacion Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.app.mariabeas.keepsafe/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Ubicacion Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.app.mariabeas.keepsafe/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }

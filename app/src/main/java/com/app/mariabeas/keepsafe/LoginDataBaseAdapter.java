@@ -132,19 +132,47 @@ public class LoginDataBaseAdapter {
 
     //METODO PARA OBTENER LOS DATOS PERSONALES DEL USUARIO
     public String getSingleEntryDatos(){
+
         return null;
     }
 
 
     //METODO PARA GUARDAR LOS VALORES QUE INSERTAMOS EN LA DB
-    public static void insertEntry(String mail, String pass) {
+    public static void insertEntry(String mail, String pass,String nombre,String apellido, String fechaNac, String sexo, String sangre, String numSeguridad) {
         ContentValues values=new ContentValues();
         // ASIGNAR VALORES PARA CADA FILA
         values.put(usuariosDBInfo.EMAIL_COLUMN, mail);
         values.put(usuariosDBInfo.PASSWORD_COLUMN, pass);
+        values.put(usuariosDBInfo.NOMBRE_COLUMN,nombre);
+        values.put(usuariosDBInfo.APELLIDOS_COLUMN,apellido);
+        values.put(usuariosDBInfo.FECHANAC_COLUMN,fechaNac);
+        values.put(usuariosDBInfo.SEXO_COLUMN,sexo);
+        values.put(usuariosDBInfo.GRUPOSANGUINEO_COLUMN,sangre);
+        values.put(usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN,numSeguridad);
+
 
         //INSERTAR LA FILA EN LA TABLE
         db.insert(usuariosDBInfo.TABLE_NAME, null, values);
+    }
+    //PRUEBA
+    public static void insertDatos(String mail,String nombre, String apellido, String fechaNac,
+                                   String sexo, String sangre, String numSeguridad) {
+
+            // Definiar las filas actualizadas
+            ContentValues values = new ContentValues();
+            // Asignar valores para cada fila
+            values.put(usuariosDBInfo.EMAIL_COLUMN, mail);
+            values.put(usuariosDBInfo.NOMBRE_COLUMN, nombre);
+            values.put(usuariosDBInfo.APELLIDOS_COLUMN, apellido);
+            values.put(usuariosDBInfo.FECHANAC_COLUMN, fechaNac);
+            values.put(usuariosDBInfo.SEXO_COLUMN, sexo);
+            values.put(usuariosDBInfo.GRUPOSANGUINEO_COLUMN, sangre);
+            values.put(usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN, numSeguridad);
+
+            String where=usuariosDBInfo.EMAIL_COLUMN+" = ?";
+        //INSERTAR LA FILA EN LA TABLE
+        db.insert(usuariosDBInfo.TABLE_NAME, null, values);
+
     }
 
 
@@ -171,8 +199,22 @@ public class LoginDataBaseAdapter {
 
         String where=usuariosDBInfo.EMAIL_COLUMN+" = ?";
         //INSERTAR LA FILA EN LA TABLE
-       // db.insert(usuariosDBInfo.TABLE_NAME, null, updatedValues);
+        //db.insert(usuariosDBInfo.TABLE_NAME, null, updatedValues);
         db.update(usuariosDBInfo.TABLE_NAME, updatedValues, where, new String[]{mail});
+
+    }
+
+
+    AdapterUsuario getUsuario(int id){
+        String[]columnas=new String[]{usuariosDBInfo.IDUSUARIO_COLUMN,usuariosDBInfo.EMAIL_COLUMN,usuariosDBInfo.NOMBRE_COLUMN,
+                usuariosDBInfo.APELLIDOS_COLUMN,usuariosDBInfo.FECHANAC_COLUMN,usuariosDBInfo.SEXO_COLUMN, usuariosDBInfo.GRUPOSANGUINEO_COLUMN,
+                usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN,usuariosDBInfo.FOTO_COLUMN};
+        SQLiteDatabase db=this.getDatabaseInstance();
+        Cursor cursor=db.query(usuariosDBInfo.TABLE_NAME,columnas,usuariosDBInfo.IDUSUARIO_COLUMN+"=?",new String[]{String.valueOf(id)},null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+       return null;
 
     }
 }

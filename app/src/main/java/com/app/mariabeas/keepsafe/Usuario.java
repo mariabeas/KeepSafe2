@@ -15,6 +15,18 @@ public class Usuario {
     private String numSeguridadSocial;
     private String foto;
 
+    public Usuario(String id, String mail, String nombre, String apellido, String fechaNac, String sexo, String sangre, String numSeguridad, String foto) {
+        this.idUsuario=id;
+        this.emailUsuario=mail;
+        this.nombreUsuario=nombre;
+        this.apellidosUsuario=apellido;
+        this.fechaNac=fechaNac;
+        this.sexo=sexo;
+        this.grupoSanguineo=sangre;
+        this.numSeguridadSocial=numSeguridad;
+        this.foto=foto;
+    }
+
     public String getIdUsuario() {
         return idUsuario;
     }

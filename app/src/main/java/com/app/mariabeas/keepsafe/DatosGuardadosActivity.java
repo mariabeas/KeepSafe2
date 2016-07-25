@@ -50,6 +50,7 @@ public class DatosGuardadosActivity extends AppCompatActivity {
         int image_link=getIntent().getIntExtra("image",R.drawable.avatar);
         image.setImageResource(image_link);
 
+
         //Declaramos el toolbar del menu datos guardados
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_datos);
         setSupportActionBar(toolbar);

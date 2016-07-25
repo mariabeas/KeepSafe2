@@ -66,8 +66,8 @@
         android:id="@+id/edtApellido"
         android:layout_gravity="center_horizontal"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/tvFecha"
-        android:layout_toEndOf="@+id/tvFecha" />
+        android:layout_alignLeft="@+id/edtFecha"
+        android:layout_alignStart="@+id/edtFecha" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,13 +89,11 @@
         android:hint="@string/edtSexo"
         android:ems="10"
         android:id="@+id/edtSexo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="38dp"
         android:layout_below="@+id/edtFecha"
         android:layout_alignLeft="@+id/edtFecha"
-        android:layout_alignStart="@+id/edtFecha"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp" />
+        android:layout_alignStart="@+id/edtFecha" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,13 +102,10 @@
         android:hint="@string/edtSangre"
         android:ems="10"
         android:id="@+id/edtSangre"
-        android:layout_below="@+id/edtSexo"
-        android:layout_alignLeft="@+id/edtSexo"
-        android:layout_alignStart="@+id/edtSexo"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp" />
+        android:layout_alignTop="@+id/tvSangre"
+        android:layout_alignLeft="@+id/edtSexo"
+        android:layout_alignStart="@+id/edtSexo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -121,11 +116,9 @@
         android:hint="@string/edtNum"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="53dp"
-        android:layout_marginLeft="29dp"
         android:layout_below="@+id/edtSangre"
         android:layout_alignLeft="@+id/edtSangre"
-        android:layout_alignStart="@+id/edtSangre"
-        android:layout_marginStart="29dp" />
+        android:layout_alignStart="@+id/edtSangre" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -160,37 +153,42 @@
         android:text="@string/tvFecha"
         android:id="@+id/tvFecha"
         android:layout_alignTop="@+id/edtFecha"
-        android:layout_toRightOf="@+id/tvSexo"
-        android:layout_toEndOf="@+id/tvSexo" />
+        android:layout_alignLeft="@+id/tvSexo"
+        android:layout_alignStart="@+id/tvSexo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvSexo"
         android:id="@+id/tvSexo"
-        android:layout_alignTop="@+id/edtSexo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp" />
+        android:layout_alignBaseline="@+id/edtSexo"
+        android:layout_alignBottom="@+id/edtSexo"
+        android:layout_alignLeft="@+id/tvSangre"
+        android:layout_alignStart="@+id/tvSangre"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvSangre"
         android:id="@+id/tvSangre"
-        android:layout_alignTop="@+id/edtSangre"
-        android:layout_toLeftOf="@+id/edtApellido"
-        android:layout_toStartOf="@+id/edtApellido" />
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_below="@+id/tvSexo"
+        android:layout_toLeftOf="@+id/edtSangre"
+        android:layout_toStartOf="@+id/edtSangre"
+        android:layout_marginTop="23dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvNum"
         android:id="@+id/tvNum"
-        android:layout_alignTop="@+id/edtNum"
-        android:layout_alignLeft="@+id/tvSexo"
-        android:layout_alignStart="@+id/tvSexo" />
+        android:layout_alignBaseline="@+id/edtNum"
+        android:layout_alignBottom="@+id/edtNum"
+        android:layout_alignLeft="@+id/tvSangre"
+        android:layout_alignStart="@+id/tvSangre" />
 
 
 </RelativeLayout>

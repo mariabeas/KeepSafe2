@@ -21,6 +21,9 @@ public class AdapterUsuario extends BaseAdapter {
         usuarios=new ArrayList<>();
         this.contexto=c;
     }
+
+
+
     @Override
     public int getCount() {
         return usuarios.size();

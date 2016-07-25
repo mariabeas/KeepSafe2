@@ -59,6 +59,13 @@
         android:layout_toStartOf="@+id/logo"
         app:backgroundTint="@color/colorAccent" />-->
 
+    <EditText
+        android:layout_width="277dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtUbicacion"
+        android:hint="@string/edtUbicacion"
+        android:layout_gravity="center_horizontal" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
