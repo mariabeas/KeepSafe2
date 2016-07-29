@@ -4,14 +4,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 /**
@@ -19,9 +22,11 @@ import android.widget.ImageView;
  */
 public class MenuActivity extends AppCompatActivity {
 
+    public static SQLiteDatabase db;
 
     ImageView logo;
     Context context=this;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
@@ -32,6 +37,7 @@ public class MenuActivity extends AppCompatActivity {
         //getSupportActionBar().setTitle("");
 
         //ELEMENTOS DE LA INTERFAZ
+
         logo=(ImageView)findViewById(R.id.logo);
         Button btnDatos=(Button)findViewById(R.id.btnDatos);
         Button btnAgenda=(Button)findViewById(R.id.btnAgenda);
@@ -117,6 +123,8 @@ public class MenuActivity extends AppCompatActivity {
                 //PARA PASAR DE UNA PANTALLA A OTRA
                 Intent intentDatos = new Intent(MenuActivity.this, DatosGuardadosActivity.class);
                 startActivity(intentDatos);
+
+
             }else if(v.getId()==R.id.btnUbicacion2){
                 Intent intentUbi=new Intent(MenuActivity.this,UbicacionActivity.class);
                 startActivity(intentUbi);
@@ -137,6 +145,7 @@ public class MenuActivity extends AppCompatActivity {
             else if(v.getId()==R.id.btnUbi2){
                Intent intentUbi2=new Intent(MenuActivity.this,UbicacionNoApi.class);
                startActivity(intentUbi2);
+
             }
 
 

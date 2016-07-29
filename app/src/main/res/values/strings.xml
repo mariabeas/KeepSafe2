@@ -25,6 +25,7 @@
     <!-- Strings de la pantalla registro -->
     <string name="btnAceptar">Aceptar</string>
     <string name="edtConfiPass">Contraseña</string>
+    <string name="edtConfirPass">Confirmar Contraseña</string>
 
     <!-- Strings de la pantalla datos -->
     <string name="edtNombre">Nombre</string>

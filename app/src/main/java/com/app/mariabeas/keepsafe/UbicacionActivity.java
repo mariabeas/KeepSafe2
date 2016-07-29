@@ -112,7 +112,19 @@ public class UbicacionActivity extends AppCompatActivity {
         }
     }
     public void setLocation(Location location){
-        getLocation(location);
+        //Obtener la direcci—n de la calle a partir de la latitud y la longitud
+        if (location.getLatitude() != 0.0 && location.getLongitude() != 0.0) {
+            try {
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                List<Address> list = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (!list.isEmpty()) {
+                    Address address = list.get(0);
+                    tvDireccion.setText("Mi direcci—n es: \n" + address.getAddressLine(0));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void getLocation(Location location) {

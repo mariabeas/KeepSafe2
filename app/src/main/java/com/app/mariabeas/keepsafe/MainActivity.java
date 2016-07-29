@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     EditText edtRecuperar;
     Context context=this;
     LoginDataBaseAdapter loginDBAdapter;
+    EditText edtNombre;
+
+    String nombre;
 
 
     @Override
@@ -45,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         logo = (ImageView) findViewById(R.id.logo);
         Button btnRecuperar = (Button) findViewById(R.id.btnRecuperar);
+        edtNombre=(EditText)findViewById(R.id.edtNombreAgenda);
+        nombre=getIntent().getStringExtra("nombre");
+
 
         MiListener listener = new MiListener();
         btnInicio.setOnClickListener(listener);
@@ -64,8 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 String user=edtUser.getText().toString();
                 String contra=edtPassword.getText().toString();
                 String storedPassword=loginDBAdapter.getSingleEntry(user);
+
                 if (contra.equals(storedPassword)) {
-                    Toast.makeText(getApplicationContext(), "¡Bienvenido " +user+"!", Toast.LENGTH_LONG).show();
+
+                    Log.d("entrando", "e");
+                    Toast.makeText(getApplicationContext(), "¡Bienvenido " + user + "!", Toast.LENGTH_LONG).show();
+
                     //PASAR A LA SIGUIENTE PANTALLA
                     Intent nuevoIntent = new Intent(MainActivity.this, MenuActivity.class);
                     startActivity(nuevoIntent);

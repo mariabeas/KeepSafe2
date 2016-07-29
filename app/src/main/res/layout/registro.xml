@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:foregroundGravity="right"
         android:id="@+id/logo"
         android:src="@drawable/logo"
+        android:layout_below="@+id/menu_datos"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="right" />
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/avatarGuardado"
         android:src="@drawable/avatar"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="0dp" />
+        android:layout_alignTop="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/email"
+        android:src="@drawable/ic_email_black_24dp"
+        android:layout_alignTop="@+id/edtUsuario"
+        android:layout_toLeftOf="@+id/edtUsuario"
+        android:layout_toStartOf="@+id/edtUsuario" />
 
     <EditText
         android:layout_width="match_parent"
@@ -27,8 +40,11 @@
         android:ems="10"
         android:id="@+id/edtUsuario"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp" />
+        android:layout_below="@+id/avatarGuardado"
+        android:layout_alignRight="@+id/edtPass"
+        android:layout_alignEnd="@+id/edtPass"
+        android:layout_alignLeft="@+id/edtPass"
+        android:layout_alignStart="@+id/edtPass" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -37,9 +53,11 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/edtPass"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/edtUsuario"
+        android:layout_alignRight="@+id/edtConfiPass"
+        android:layout_alignEnd="@+id/edtConfiPass"
+        android:layout_alignLeft="@+id/edtConfiPass"
+        android:layout_alignStart="@+id/edtConfiPass" />
 
 
     <EditText
@@ -49,10 +67,82 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/edtConfiPass"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/edtPass"
+        android:layout_alignRight="@+id/edtNombreAgenda"
+        android:layout_alignEnd="@+id/edtNombreAgenda"
+        android:layout_toRightOf="@+id/face"
+        android:layout_toEndOf="@+id/face" />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/face"
+        android:src="@drawable/ic_face_black_24dp"
+        android:layout_below="@+id/edtConfiPass"
+        android:layout_toLeftOf="@+id/edtNombreAgenda"
+        android:layout_toStartOf="@+id/edtNombreAgenda" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtNombreAgenda"
+        android:hint="Nombre"
+        android:layout_below="@+id/edtConfiPass"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtApellido"
+        android:ems="10"
+        android:id="@+id/edtApellido"
+        android:layout_below="@+id/edtNombreAgenda"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/edtFecha"
+        android:hint="@string/edtFecha"
+        android:layout_below="@+id/edtApellido"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtSexo"
+        android:ems="10"
+        android:id="@+id/edtSexo"
+        android:layout_below="@+id/edtFecha"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/edtSangre"
+        android:ems="10"
+        android:id="@+id/edtSangre"
+        android:layout_below="@+id/edtSexo"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edtNum"
+        android:hint="@string/edtNum"
+        android:layout_below="@+id/edtSangre"
+        android:layout_centerHorizontal="true" />
+
+
 
     <Button
         android:layout_width="wrap_content"
@@ -60,6 +150,19 @@
         android:text="@string/btnAceptar"
         android:id="@+id/btnAceptar"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@+id/edtNum"
+        android:layout_alignLeft="@+id/avatarGuardado"
+        android:layout_alignStart="@+id/avatarGuardado" />
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_menu_camera"
+
+        android:layout_above="@+id/edtUsuario"
+        android:layout_toLeftOf="@+id/logo"
+        android:layout_toStartOf="@+id/logo" />
+
+</RelativeLayout>

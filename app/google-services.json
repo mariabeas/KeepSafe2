@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "542359104729",
+    "project_id": "keepsafe-1208"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542359104729:android:2d34ce0daafed6b8",
+        "android_client_info": {
+          "package_name": "com.app.mariabeas.keepsafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542359104729-t1ngd1lo5cin7n7bdtvqjchn9sfgu9ud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.mariabeas.keepsafe",
+            "certificate_hash": "4467F3070311D3D4EF8B181A2404316921ED06A7"
+          }
+        },
+        {
+          "client_id": "542359104729-a2rivs4vm2eqrsq12g0b2qkv0lu8tgji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDolG4zKJPMAnCxragvpGvWXB5xBpN52b4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

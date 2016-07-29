@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maria on 04/02/2016.
@@ -131,11 +134,25 @@ public class LoginDataBaseAdapter {
     }
 
     //METODO PARA OBTENER LOS DATOS PERSONALES DEL USUARIO
-    public String getSingleEntryDatos(){
+    public String getSingleEntryDatos(String id){
 
+        String[]columnas=new String[]{usuariosDBInfo.IDUSUARIO_COLUMN,usuariosDBInfo.EMAIL_COLUMN,usuariosDBInfo.NOMBRE_COLUMN,
+                usuariosDBInfo.APELLIDOS_COLUMN,usuariosDBInfo.FECHANAC_COLUMN,usuariosDBInfo.SEXO_COLUMN, usuariosDBInfo.GRUPOSANGUINEO_COLUMN,
+                usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN,usuariosDBInfo.FOTO_COLUMN};
+        SQLiteDatabase db=this.getDatabaseInstance();
+        Cursor cursor=db.query(usuariosDBInfo.TABLE_NAME, columnas, usuariosDBInfo.IDUSUARIO_COLUMN + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
         return null;
+
     }
 
+    //METODO PARA OBTENER LOS DATOS GUARDADOS AL REGISTRAR
+    public static void getEntry(String mail, String pass,String nombre,String apellido, String fechaNac, String sexo, String sangre, String numSeguridad) {
+        ContentValues values = new ContentValues();
+
+    }
 
     //METODO PARA GUARDAR LOS VALORES QUE INSERTAMOS EN LA DB
     public static void insertEntry(String mail, String pass,String nombre,String apellido, String fechaNac, String sexo, String sangre, String numSeguridad) {
@@ -153,6 +170,7 @@ public class LoginDataBaseAdapter {
 
         //INSERTAR LA FILA EN LA TABLE
         db.insert(usuariosDBInfo.TABLE_NAME, null, values);
+        db.close();
     }
     //PRUEBA
     public static void insertDatos(String mail,String nombre, String apellido, String fechaNac,
@@ -181,6 +199,8 @@ public class LoginDataBaseAdapter {
         String where=usuariosDBInfo.EMAIL_COLUMN+"=?";
         int numEntryDelete= db.delete(usuariosDBInfo.TABLE_NAME, where, new String[]{idUsuario}) ;
         return numEntryDelete;
+
+
     }
 
     //METODO PARA ACTUALIZAR LAS ENTRADAS
@@ -201,6 +221,7 @@ public class LoginDataBaseAdapter {
         //INSERTAR LA FILA EN LA TABLE
         //db.insert(usuariosDBInfo.TABLE_NAME, null, updatedValues);
         db.update(usuariosDBInfo.TABLE_NAME, updatedValues, where, new String[]{mail});
+        db.close();
 
     }
 
@@ -216,5 +237,42 @@ public class LoginDataBaseAdapter {
         }
        return null;
 
+    }
+
+    //COGER LOS DATOS DEL USUARIO!!!
+    public Usuario recuperarUsuario(int id){
+        SQLiteDatabase db=this.getDatabaseInstance();
+        String[] valores_recuperar = {usuariosDBInfo.IDUSUARIO_COLUMN,usuariosDBInfo.EMAIL_COLUMN,usuariosDBInfo.NOMBRE_COLUMN,
+                usuariosDBInfo.APELLIDOS_COLUMN,usuariosDBInfo.FECHANAC_COLUMN,usuariosDBInfo.SEXO_COLUMN, usuariosDBInfo.GRUPOSANGUINEO_COLUMN,
+                usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN,null};
+        Cursor cursor=db.query(usuariosDBInfo.TABLE_NAME,valores_recuperar,usuariosDBInfo.IDUSUARIO_COLUMN+"=?",new String[]{String.valueOf(id)},null,null,null);
+
+        if(cursor != null) {
+            cursor.moveToFirst();
+        }
+        Usuario usuario = new Usuario(cursor.getString(0), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7));
+
+        cursor.close();
+        return usuario;
+    }
+
+    public List<Usuario> recuperarUsuario() {
+        SQLiteDatabase db = this.getDatabaseInstance();
+        List<Usuario> lista_usuarios = new ArrayList<Usuario>();
+        String[] valores_recuperar = {usuariosDBInfo.IDUSUARIO_COLUMN,usuariosDBInfo.EMAIL_COLUMN,usuariosDBInfo.NOMBRE_COLUMN,
+                usuariosDBInfo.APELLIDOS_COLUMN,usuariosDBInfo.FECHANAC_COLUMN,usuariosDBInfo.SEXO_COLUMN, usuariosDBInfo.GRUPOSANGUINEO_COLUMN,
+                usuariosDBInfo.NUMSEGURIDADSOCIAL_COLUMN,null};
+        Cursor cursor = db.query(usuariosDBInfo.TABLE_NAME,valores_recuperar,usuariosDBInfo.IDUSUARIO_COLUMN,null,null,null,null);
+        cursor.moveToFirst();
+        do {
+            Usuario usuario = new Usuario(cursor.getString(0), cursor.getString(1),
+                    cursor.getString(2), cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7));
+
+            lista_usuarios.add(usuario);
+        } while (cursor.moveToNext());
+        //db.close();
+        cursor.close();
+        return lista_usuarios;
     }
 }

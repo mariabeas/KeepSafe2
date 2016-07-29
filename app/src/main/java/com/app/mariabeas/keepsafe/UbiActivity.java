@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -28,6 +31,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import android.location.LocationListener;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import static java.lang.String.*;
 
@@ -46,6 +56,7 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
     //private Context context;
     LocationManager locationManager;
     String proveedor;
+    String provider;
     private boolean networkOn;
 
 
@@ -64,10 +75,22 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
     public UbiActivity(Context context) {
         this.context = context;
         locationManager= (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        //CARLOS
+
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+        provider=locationManager.getBestProvider(criteria, true);
+        locationManager.requestLocationUpdates(provider, 1000, 1, locationListener);
+        //
         proveedor=locationManager.NETWORK_PROVIDER; //PROBAR CON GPS_PROVIDER
         networkOn=locationManager.isProviderEnabled(proveedor);
         locationManager.requestLocationUpdates(proveedor, 1000, 1, this);
         getLocation();
+        MostrarLocalizacion();
 
     }
     public UbiActivity(){
@@ -79,6 +102,7 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ubi);
+
         getLocation();
 
         //Declaramos el toolbar del menu datos
@@ -92,6 +116,8 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
         tvUbi = (TextView) findViewById(R.id.tvUbi);
 
         tvDireccion = (TextView) findViewById(R.id.tvDireccion);
+
+
         logo = (ImageView) findViewById(R.id.logo);
         vistaMapa = (MapView) findViewById(R.id.miMapa);
         Button btnActualizar = (Button) findViewById(R.id.btnActualizar);
@@ -101,12 +127,14 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
         //tipo de mapa que queramos mostrar
         googleMapa.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+
         setUpMapIfNeeded();
 
         MiListener listener = new MiListener();
         btnActualizar.setOnClickListener(listener);
 
        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -122,6 +150,7 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
 
         googleMapa.setMyLocationEnabled(true);
         MostrarLocalizacion();
+
 
 
        /* locationListener=new LocationListener() {
@@ -147,6 +176,7 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
 
             }
         };*/
+
 
     }
     @Override
@@ -219,38 +249,51 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
         location.setLatitude(29239);
         location.getLongitude();
 
-        //String ubicacion="Mi ubicación actual es: "+"\n Latitud= "+loc.getLatitude()+"\n Longitud= "+loc.getLongitude();
-        String ubicacion = "Mi ubicación actual es: " + "\n Latitud: " + valueOf(location.getLatitude() + Math.random() * 10) + "\n Longitud: "
-                + valueOf(location.getLongitude());
-        Toast.makeText(getApplicationContext(), "Ubicación actualizada", Toast.LENGTH_SHORT).show();
-        tvDireccion.setText(ubicacion);
-        Toast.makeText(context,ubicacion, Toast.LENGTH_LONG).show();
-        this.tvDireccion.setText(valueOf(location));
+        if(location!=null) {
+            //String ubicacion="Mi ubicación actual es: "+"\n Latitud= "+loc.getLatitude()+"\n Longitud= "+loc.getLongitude();
+            String ubicacion = "Mi ubicación actual es: " + "\n Latitud: " + valueOf(location.getLatitude() + Math.random() * 10) + "\n Longitud: "
+                    + valueOf(location.getLongitude());
+            Toast.makeText(getApplicationContext(), "Ubicación actualizada", Toast.LENGTH_SHORT).show();
+            tvDireccion.setText(ubicacion);
+            Toast.makeText(context, ubicacion, Toast.LENGTH_LONG).show();
+            this.tvDireccion.setText(valueOf(location));
+        }else{
+
+            //This is what you need:
+            locationManager.requestLocationUpdates(proveedor, 1000, 0, this);
+
+        }
+
 
     }
-    private void getLocation(){
-        if(networkOn){
+    private void getLocation() {
+
+        if (networkOn) {
             tvUbi.setText((int) location.getLatitude());
-            Location location=locationManager.getLastKnownLocation(proveedor);
-            if(location!=null){
+
+            Location location = locationManager.getLastKnownLocation(proveedor);
+            //CARLOS
+            String cadenaLa=location.toString();
+            Log.i("LOG DE LATITUD",cadenaLa);
+            //
+            if (location != null) {
                 tvUbi.setText((int) location.getLatitude());
-                StringBuilder stringBuilder=new StringBuilder();
+                StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Altitud: ").append(location.getAltitude())
                         .append("Latitud: ").append(location.getLatitude())
                         .append("Longitud: ").append(location.getLongitude());
-                Toast.makeText(context,stringBuilder.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context, stringBuilder.toString(), Toast.LENGTH_LONG).show();
+            }else{
+
+                    //This is what you need:
+                    locationManager.requestLocationUpdates(proveedor, 1000, 0, this);
+
             }
         }
     }
 
-    /*public void setLocation(Location location) {
-        this.location = location;
-    }*/
 
-    @Override
-    public void onLocationChanged(Location location) {
-        getLocation();
-    }
+
 
 
     @Override
@@ -266,14 +309,76 @@ public class UbiActivity extends AppCompatActivity implements LocationListener {
 
     @Override
     public void onProviderDisabled(String provider) {
+        Intent intent = new Intent( android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivity(intent);
 
     }
+    ////+carlos////
+    public void find_Location(Context con) {
+        Log.d("Find Location", "in find_location");
+        this.context = con;
+        String location_context = Context.LOCATION_SERVICE;
+        locationManager = (LocationManager) con.getSystemService(location_context);
+        List<String> providers = locationManager.getProviders(true);
+        for (String provider : providers) {
+            Log.e("provider:",provider);
+            locationManager.requestLocationUpdates(provider, 1000, 0,
+                    new LocationListener() {
 
+                        public void onLocationChanged(Location location) {}
 
+                        public void onProviderDisabled(String provider) {}
+
+                        public void onProviderEnabled(String provider) {}
+
+                        public void onStatusChanged(String provider, int status,
+                                                    Bundle extras) {}
+                    });
+            Location location = locationManager.getLastKnownLocation(provider);
+            if (location != null) {
+                Log.i("probamos33","LATITUD: "+ location.getLatitude()
+                        +"- LONGITUD: " +location.getLongitude());
+            }
+        }
+    }
+    /////
+
+//////////////////carlos/////////
+public void onLocationChanged(Location location) {
+    find_Location(context);
+    Log.i("localizacion BUENAAAA", "LATITUD: " + location.getLatitude()
+            + "- LONGITUD: " + location.getLongitude());
+
+    Toast.makeText(context,"ACCURACY: "+ location.getAccuracy()+"LATITUD: "+ location.getLatitude()+
+            "- LONGITUD: " +location.getLongitude(), Toast.LENGTH_LONG).show();
+    tvUbi.setText("ACCURACY: "+ location.getAccuracy()+"LATITUD: "+ location.getLatitude()+
+            "- LONGITUD: " +location.getLongitude());
+    // TODO Auto-generated method stub
+}
+    ////////////////////
     private class MiListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
+
+           LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            Location location = new Location(LocationManager.GPS_PROVIDER);
+
+            location.setLongitude(location.getLongitude());
+            location.setLatitude(location.getLatitude());
+
+            onLocationChanged(location);
+            Log.e("zorrasca",lm.getAllProviders().toString());
+            Log.e("zorrasca",location.toString());
+            Log.e("zorrasca",location.toString());
+            Log.e("zorrasca", location.toString());
+            Log.e("zorrasca", location.toString());
+
+           // Log.e("zorrasca2",locationManager.toString());
+            Log.e("zorrasca",location.toString());
+            Log.e("zorrasca",location.toString());
+            Log.e("zorrasca",location.toString());
+            Log.e("zorrasca", location.toString());
             if (v.getId() == R.id.btnActualizar) {
                 tvDireccion.refreshDrawableState();
                 getLocation();

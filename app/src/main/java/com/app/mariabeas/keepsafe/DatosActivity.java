@@ -76,6 +76,7 @@ public class DatosActivity extends AppCompatActivity {
         edtNum=(EditText)findViewById(R.id.edtNum);
 
 
+
         //Crear una instancia de SQLiteDataBase
         loginDBAdapter = new LoginDataBaseAdapter(this);
         loginDBAdapter = loginDBAdapter.open();
@@ -97,7 +98,9 @@ public class DatosActivity extends AppCompatActivity {
         MiListener listener = new MiListener();
         btnFoto.setOnClickListener(listener);
 
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
